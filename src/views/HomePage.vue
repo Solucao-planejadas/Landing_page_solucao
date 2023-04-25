@@ -1,29 +1,43 @@
 <template>
-    <HeadComponent />
-        <!-- Content section-->
-        <section class="py-5">
-            <div class="container my-5">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <h2>Full Width Backgrounds</h2>
-                        <p class="lead">A single, lightweight helper class allows you to add engaging, full width background images to sections of your page.</p>
-                        <p class="mb-0">The universe is almost 14 billion years old, and, wow! Life had no problem starting here on Earth! I think it would be inexcusably egocentric of us to suggest that we're alone in the universe.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <HeadComponent/>
+    <SobreNos/>
+    <div class="container">
+
+        <Carousel class="mb-10"/>
+        <CardComponent :cards="cards"/>
+
+    </div>
+
 </template>
 
 <script>
 
 import HeadComponent from "@/components/HeadComponent.vue";
+import SobreNos from "@/components/SobreNos.vue";
+import Carousel from "@/components/CarouselComponent.vue";
+import CardComponent from "@/components/CardComponent.vue";
 
 export default {
     name: "HomePage",
-    components: { HeadComponent },
+    components: {CardComponent, Carousel, SobreNos, HeadComponent},
+    data() {
+        return {
+            cards: [
+                {
+                    title: "teste",
+                    src: "https://media.gazetadopovo.com.br/2022/03/02151626/dicas-moveis-planejados-evivva-cozinha-960x540.jpg",
+                    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
+                },{
+                    title: "teste",
+                    src: "https://media.gazetadopovo.com.br/2022/03/02151626/dicas-moveis-planejados-evivva-cozinha-960x540.jpg",
+                    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
+                },{
+                    title: "teste",
+                    src: "https://media.gazetadopovo.com.br/2022/03/02151626/dicas-moveis-planejados-evivva-cozinha-960x540.jpg",
+                    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
+                },
+            ],
+        }
+    }
 }
 </script>
-
-<style scoped>
-
-</style>

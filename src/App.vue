@@ -41,7 +41,4 @@ export default {
 
 <style>
 @import "@/assets/css/main.css";
-#app {
-    min-height: 200vh;
-}
 </style>

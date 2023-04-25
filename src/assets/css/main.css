@@ -11,6 +11,7 @@
     --default-gray: #1f1f1f;
     --secodary-gray: #c0c0c0;
     --tertiary-gray: #D9D9D9;
+    --quaternary-gray: #D5D5D5;
 }
 
 * {
@@ -20,4 +21,9 @@
     outline: none;
     box-sizing: border-box;
     font-family: "Roboto", sans-serif;
+}
+
+#app {
+    background: var(--quaternary-gray);
+    min-height: 300vh;
 }
