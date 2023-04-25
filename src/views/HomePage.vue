@@ -1,10 +1,13 @@
 <template>
-  <div>opa</div>
+  <NavBar />
 </template>
 
 <script>
+import NavBar from "@/components/NavBar.vue";
+
 export default {
-    name: "HomePage"
+    name: "HomePage",
+    components: {NavBar}
 }
 </script>
 
