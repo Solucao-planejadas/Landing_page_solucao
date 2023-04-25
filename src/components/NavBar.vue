@@ -8,25 +8,9 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto" v-for="button in buttons" v-bind:key="button.id">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
+                        <button class="nav-link" @click="scrollTo(button.id)">{{ button.page }}</button>
                     </li>
                 </ul>
             </div>
@@ -36,7 +20,19 @@
 
 <script>
 export default {
-    name: "NavBar"
+    name: "NavBar",
+    props: {
+      buttons: {
+          required: true,
+          type: Array
+      }
+    },
+    methods: {
+        scrollTo(id) {
+            document.getElementById(id).scrollIntoView( {behavior: "smooth", block: "center", inline: "center"} )
+            console.log(id)
+        },
+    },
 }
 </script>
 
