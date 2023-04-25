@@ -1,10 +1,11 @@
 <template>
-    <NavBar :buttons="buttons"/>
+    <NavBar :buttons="buttons" :logo="logo"/>
     <router-view/>
 </template>
 
 <script>
 
+import logo from "@/assets/logo.png";
 import NavBar from "@/components/NavBar.vue";
 
 export default {
@@ -14,6 +15,7 @@ export default {
     },
     data() {
         return {
+            logo: logo,
             buttons: [
                 {
                     page: "Sobre Nós",
@@ -39,4 +41,7 @@ export default {
 
 <style>
 @import "@/assets/css/main.css";
+#app {
+    min-height: 200vh;
+}
 </style>

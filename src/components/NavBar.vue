@@ -1,10 +1,12 @@
 <template>
-    <nav class="navbar navbar-expand-lg static-top">
+    <nav class="navbar navbar-expand-lg fixed-top" :class="{ 'scrolled': hasScrolled }">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="https://placeholder.pics/svg/150x50/888888/EEE/Logo" alt="..." height="36">
+                <img :src="logo" alt="..." height="36">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse  justify-content-between flex-grow-0" id="navbarSupportedContent">
@@ -22,26 +24,54 @@
 export default {
     name: "NavBar",
     props: {
-      buttons: {
-          required: true,
-          type: Array
-      }
+        logo: {
+            required: true,
+            type: String
+        },
+        buttons: {
+            required: true,
+            type: Array
+        }
+    },
+    data() {
+        return {
+            hasScrolled: false
+        };
+    },
+    mounted() {
+        window.addEventListener('scroll', this.handleScroll);
+        document.querySelector('.navbar-toggler').addEventListener('click', this.handleClick)
+    },
+    unmounted() {
+        window.removeEventListener('scroll', this.handleScroll);
+        document.querySelector('.navbar-toggler').removeEventListener('click', this.handleClick)
     },
     methods: {
         scrollTo(id) {
-            document.getElementById(id).scrollIntoView( {behavior: "smooth", block: "center", inline: "center"} )
+            document.getElementById(id).scrollIntoView({behavior: "smooth", block: "center", inline: "center"})
             console.log(id)
         },
+        handleScroll() {
+            this.hasScrolled = window.scrollY > 0;
+        },
+        handleClick() {
+            this.hasScrolled = window.scrollY > 0 ? !!this.hasScrolled : !this.hasScrolled;
+        }
     },
 }
 </script>
 
 <style scoped>
-    .navbar {
-        background: var(--secondary-color);
-    }
+.navbar {
+    background: transparent;
+}
 
-    .nav-link {
-        color: var(--secodary-gray);
-    }
+.scrolled {
+    background: var(--tertiary-color);
+    transition: background-color 0.5s ease-in-out;
+}
+
+.nav-link {
+    color: var(--secodary-gray);
+}
 </style>
