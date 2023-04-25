@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <nav class="navbar navbar-expand-lg static-top">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="https://placeholder.pics/svg/150x50/888888/EEE/Logo" alt="..." height="36">
@@ -37,5 +37,11 @@ export default {
 </script>
 
 <style scoped>
+    .navbar {
+        background: var(--secondary-color);
+    }
 
+    .nav-link {
+        color: var(--secodary-gray);
+    }
 </style>
