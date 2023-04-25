@@ -1,7 +1,7 @@
 <template>
 
-<div>
-    <h1 class="text-primary">Mamacos tem vida mansa</h1>
+<div class="container">
+    <p class="h2 mt-12 text-center text-dark font-weigth-light">NOSSOS PRODUTOS</p>
 </div>
 
 </template>
