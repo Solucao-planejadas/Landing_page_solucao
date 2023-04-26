@@ -109,7 +109,7 @@ export default {
     methods: {
         submit() {
 
-            this.errorOnSubmit = !this.nomeValido && !this.emailValido && !this.telefoneValido;
+            this.errorOnSubmit = this.nomeInvalido || this.emailInvalido || this.telefoneInvalido;
 
             setTimeout(() => {
                 this.errorOnSubmit = '';
