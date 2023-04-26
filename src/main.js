@@ -3,7 +3,8 @@ import { createApp } from 'vue'
 import { vuetify } from '@/plugins'
 import { router } from '@/router'
 import App from './App.vue'
+import VueTheMask from 'vue-the-mask'
 
-createApp(App).use(vuetify).use(router).mount('#app')
+createApp(App).use(vuetify).use(VueTheMask).use(router).mount('#app')
 
 import "bootstrap/dist/js/bootstrap.js"

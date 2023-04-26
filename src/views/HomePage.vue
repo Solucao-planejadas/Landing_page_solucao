@@ -1,10 +1,12 @@
 <template>
     <HeadComponent/>
-    <SobreNos/>
+    <SobreNos id="sobreNos"/>
     <div class="container">
 
-        <Carousel class="mb-10"/>
+        <Carousel class="mb-10" id="Projetos"/>
         <CardComponent :cards="cards"/>
+
+        <FormComponent/>
 
     </div>
 
@@ -16,10 +18,11 @@ import HeadComponent from "@/components/HeadComponent.vue";
 import SobreNos from "@/components/SobreNos.vue";
 import Carousel from "@/components/CarouselComponent.vue";
 import CardComponent from "@/components/CardComponent.vue";
+import FormComponent from "@/views/FormComponent.vue";
 
 export default {
     name: "HomePage",
-    components: {CardComponent, Carousel, SobreNos, HeadComponent},
+    components: {FormComponent, CardComponent, Carousel, SobreNos, HeadComponent},
     data() {
         return {
             cards: [
