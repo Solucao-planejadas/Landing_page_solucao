@@ -1,7 +1,7 @@
 <template>
-    <div class="col col-lg-4">
+    <div class="col col-md-2">
         <div class="d-flex justify-center gap-3 align-center"
-             :class="{ 'flex-row': $vuetify.display.sm || $vuetify.display.xs, 'flex-column': !$vuetify.display.sm }">
+             :class="{ 'flex-column': !$vuetify.display.sm }">
 
             <div class="text-center mb-2">
                 <img :src="icon_location" class="w-50 mb-2" alt=""/>

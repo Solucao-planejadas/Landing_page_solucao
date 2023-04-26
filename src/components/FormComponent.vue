@@ -12,9 +12,11 @@
             Obrigado, logo entraremos em contato!
         </div>
 
-        <div class="d-flex p-2 justify-center align-center" :class="{ 'flex-column': $vuetify.display.sm || $vuetify.display.xs }">
+        <div class="d-flex gap-2 p-2 justify-center align-center" :class="{ 'flex-column': $vuetify.display.sm || $vuetify.display.xs }">
 
             <IconsForm :icon_call="icon_call" :icon_location="icon_location" :icon_sms="icon_sms"/>
+
+            <div v-if="!$vuetify.display.sm" class="col col-md-1 line bg-black h-100 mr-5"></div>
 
             <div class="col col-md-6 mt-6" :class="{ 'col-md-12': $vuetify.display.sm }">
 
@@ -157,6 +159,10 @@ export default {
 <style scoped>
 .form-container {
     background: var(--tertiary-gray);
+}
+
+.line {
+    width: 1px;
 }
 
 </style>
