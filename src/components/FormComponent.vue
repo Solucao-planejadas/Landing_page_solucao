@@ -31,7 +31,6 @@
                                 type="text"
                                 class="form-control"
                                 id="inputNome"
-                                placeholder="nome"
                                 :class="{ 'is-valid': nomeValido, 'is-invalid': errorOnSubmit || nomeInvalido && nomeTocado }"
                                 v-model="nome"
                                 @input="nomeTocado = true"
@@ -50,7 +49,6 @@
                                 type="email"
                                 class="form-control"
                                 id="inputEmail"
-                                placeholder="name@example.com"
                                 :class="{ 'is-valid': emailValido, 'is-invalid': errorOnSubmit || emailInvalido && emailTocado }"
                                 v-model="email"
                                 @input="emailTocado = true"
@@ -63,7 +61,9 @@
                     </div>
 
                     <div class="col-12  mb-3  form-floating">
-                        <input type="text" class="form-control" id="inputTelefone" placeholder="Telefone"
+                        <input type="text"
+                               class="form-control"
+                               id="inputTelefone"
                                v-mask="'(##) #####-####'"
                                :class="{ 'is-valid': telefoneValido, 'is-invalid': errorOnSubmit || telefoneInvalido && telefoneTocado }"
                                v-model="telefone" @input="(telefoneTocado = true)"
