@@ -1,18 +1,36 @@
 <template>
-    <nav class="navbar navbar-expand-lg fixed-top" :class="{ 'scrolled': hasScrolled }">
+    <nav
+        class="navbar navbar-expand-lg fixed-top"
+        :class="{ scrolled: hasScrolled }"
+    >
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img :src="logo" alt="..." height="36">
+                <img :src="logo" alt="..." height="36" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse  justify-content-between flex-grow-0" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto" v-for="button in buttons" v-bind:key="button.id">
+            <div
+                class="collapse navbar-collapse justify-content-between flex-grow-0"
+                id="navbarSupportedContent"
+            >
+                <ul
+                    class="navbar-nav ms-auto"
+                    v-for="button in buttons"
+                    v-bind:key="button.id"
+                >
                     <li class="nav-item">
-                        <button class="nav-link" @click="scrollTo(button.id)">{{ button.page }}</button>
+                        <button class="nav-link" @click="scrollTo(button.id)">
+                            {{ button.page }}
+                        </button>
                     </li>
                 </ul>
             </div>
@@ -26,39 +44,66 @@ export default {
     props: {
         logo: {
             required: true,
-            type: String
+            type: String,
         },
         buttons: {
             required: true,
-            type: Array
-        }
+            type: Array,
+        },
     },
     data() {
         return {
-            hasScrolled: false
+            hasScrolled: false,
+            isMenuActive: false
         };
     },
     mounted() {
-        window.addEventListener('scroll', this.handleScroll);
-        document.querySelector('.navbar-toggler').addEventListener('click', this.handleClick)
+        window.addEventListener("scroll", this.handleScroll);
+        document
+            .querySelector(".navbar-toggler")
+            .addEventListener("click", this.handleClick);
     },
-    unmounted() {
-        window.removeEventListener('scroll', this.handleScroll);
-        document.querySelector('.navbar-toggler').removeEventListener('click', this.handleClick)
+    beforeUnmount() {
+        window.removeEventListener("scroll", this.handleScroll);
+        document
+            .querySelector(".navbar-toggler")
+            .removeEventListener("click", this.handleClick);
     },
     methods: {
         scrollTo(id) {
-            document.getElementById(id).scrollIntoView({behavior: "smooth", block: "center", inline: "center"})
-            console.log(id)
+            document
+                .getElementById(id)
+                .scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                    inline: "center",
+                });
         },
+
         handleScroll() {
-            this.hasScrolled = window.scrollY > 0;
+            if (window.scrollY > 0) {
+                this.hasScrolled = true;
+            } else {
+                this.hasScrolled = this.isMenuActive;
+            }
         },
         handleClick() {
-            this.hasScrolled = window.scrollY > 0 ? !!this.hasScrolled : !this.hasScrolled;
-        }
+
+            this.isMenuActive = !this.isMenuActive;
+
+            if (window.scrollY === 0) {
+
+                this.hasScrolled = this.isMenuActive;
+            } else {
+                if (window.scrollY > 0) {
+                    this.hasScrolled = true;
+                } else {
+                    this.isMenuActive = true;
+                }
+            }
+        },
     },
-}
+};
 </script>
 
 <style scoped>
