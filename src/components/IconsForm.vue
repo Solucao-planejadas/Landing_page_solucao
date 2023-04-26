@@ -1,0 +1,37 @@
+<template>
+    <div class="col col-lg-4">
+        <div class="d-flex justify-center gap-3 align-center"
+             :class="{ 'flex-row': $vuetify.display.sm || $vuetify.display.xs, 'flex-column': !$vuetify.display.sm }">
+
+            <div class="text-center mb-2">
+                <img :src="icon_location" class="w-50 mb-2" alt=""/>
+                <p class="color_text_form rounded-4 p-1 px-3">textpo</p>
+            </div>
+            <div class="text-center mb-2">
+                <img :src="icon_call" class="w-50 mb-2" alt=""/>
+                <p class="color_text_form rounded-4 p-1 px-3">textpo</p>
+            </div>
+            <div class="text-center mb-2">
+                <img :src="icon_sms" class="w-50 mb-2" alt=""/>
+                <p class="color_text_form rounded-4 p-1 px-3">textpo</p>
+            </div>
+
+        </div>
+    </div>
+</template>
+<script>
+export default {
+    name: 'IconsForm',
+    props: {
+        icon_call: {},
+        icon_location: {},
+        icon_sms: {}
+    }
+}
+</script>
+<style scoped>
+
+.color_text_form {
+    background: var(--secodary-gray);
+}
+</style>

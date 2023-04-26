@@ -1,7 +1,8 @@
 <template>
-    <div class="row justify-content-md-center form-container mt-3">
-
-        <h1 class="text-center bg-blue-accent-1 mb-5 p-1 rounded-1 text-white">Contate-nos</h1>
+    <div class="row justify-content-md-center form-container mt-3 pt-10 pb-10">
+        <div class=" d-flex justify-center align-center">
+            <h1 class="text-center bg-blue-accent-1 w-50 mb-5 p-1rounded-1 text-white">Contate-nos</h1>
+        </div>
 
         <div v-if="errorOnSubmit" class="alert alert-danger text-center" role="alert">
             Preencha todos os campos de forma válida!
@@ -11,21 +12,15 @@
             Obrigado, logo entraremos em contato!
         </div>
 
-        <div class="d-flex" :class="{ 'flex-column': $vuetify.display.sm }">
+        <div class="d-flex p-2 justify-center align-center" :class="{ 'flex-column': $vuetify.display.sm || $vuetify.display.xs }">
 
+            <IconsForm :icon_call="icon_call" :icon_location="icon_location" :icon_sms="icon_sms"/>
 
-            <div class="col col-lg-4">
-
-            <!-- TODO - contacts -->
-                teste
-            </div>
-
-            <div class="col">
+            <div class="col col-md-6 mt-6" :class="{ 'col-md-12': $vuetify.display.sm }">
 
                 <div class="row g-3 d-flex">
 
                     <div class="col-md-12 form-floating">
-
 
                         <input
                                 type="text"
@@ -60,7 +55,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12  mb-3  form-floating">
+                    <div class="col-md-12  mb-3  form-floating">
                         <input type="text"
                                class="form-control"
                                id="inputTelefone"
@@ -78,7 +73,10 @@
                     </div>
 
                     <div class="col-12 d-flex justify-center align-center">
-                        <button type="submit" class="btn btn-primary" :class="{'btn-danger': errorOnSubmit, 'btn-success': errorOnSubmit === false}" @click="submit()">Submit</button>
+                        <button type="submit" class="btn btn-primary"
+                                :class="{'btn-danger': errorOnSubmit, 'btn-success': errorOnSubmit === false}"
+                                @click="submit()">Submit
+                        </button>
                     </div>
                 </div>
             </div>
@@ -89,14 +87,22 @@
 
 <script>
 
-
 import {vuetify} from "@/plugins";
+import icon_sms from '@/assets/svg/🦆 icon _sms_.svg';
+import icon_call from '@/assets/svg/🦆 icon _call_.png';
+import icon_location from '@/assets/svg/🦆 icon _location_.svg';
+import IconsForm from "@/components/IconsForm.vue";
 
 export default {
     name: 'FormComponent',
-    components: {},
+    components: {IconsForm},
     data() {
         return {
+
+            icon_sms,
+            icon_call,
+            icon_location,
+
             nome: '',
             email: '',
             telefone: '',
@@ -152,4 +158,5 @@ export default {
 .form-container {
     background: var(--tertiary-gray);
 }
+
 </style>
