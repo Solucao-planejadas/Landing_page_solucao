@@ -2,7 +2,7 @@
   <div class="products gap-3">
     <div class="row">
       <div
-        class="col-sm-4"
+        class="col-sm-4 mb-3"
         v-for="(card, index) in cards"
         v-bind:key="card.title"
       >
@@ -13,7 +13,7 @@
             <h5 class="card-title">{{ card.title }}</h5>
             <p class="d-none">{{ index }}</p>
 
-            <div class="d-flex justify-content-between align-center">
+            <div class="d-flex justify-content-between align-center gap-2">
               <button class="btn btn-sm">
                 Ver coleção
               </button>
