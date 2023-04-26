@@ -1,7 +1,7 @@
 <template>
     <div class="row justify-content-md-center form-container mt-3">
 
-        <h1 class="text-center bg-blue-accent-1 mb-5 p-1 rounded-1">Contate-nos</h1>
+        <h1 class="text-center bg-blue-accent-1 mb-5 p-1 rounded-1 text-white">Contate-nos</h1>
 
         <div v-if="errorOnSubmit" class="alert alert-danger text-center" role="alert">
             Preencha todos os campos de forma válida!
@@ -17,9 +17,7 @@
             <div class="col col-lg-4">
 
             <!-- TODO - contacts -->
-
                 teste
-
             </div>
 
             <div class="col">
