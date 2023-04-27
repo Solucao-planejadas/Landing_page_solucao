@@ -7,6 +7,8 @@
         <CardComponent :cards="cards"/>
 
         <FormComponent/>
+        
+        <MidiasSociais/>
 
     </div>
 
@@ -19,10 +21,11 @@ import SobreNos from "@/components/SobreNos.vue";
 import Carousel from "@/components/CarouselComponent.vue";
 import CardComponent from "@/components/CardComponent.vue";
 import FormComponent from "@/components/FormComponent.vue";
+import MidiasSociais from "@/components/MidiasSociais.vue";
 
 export default {
     name: "HomePage",
-    components: {FormComponent, CardComponent, Carousel, SobreNos, HeadComponent},
+    components: {FormComponent, CardComponent, Carousel, SobreNos, HeadComponent,MidiasSociais},
     data() {
         return {
             cards: [
