@@ -8,25 +8,25 @@
 
             <div class="d-flex justify-content-evenly  ">
 
-                <div class="d-block">
+                <div class="d-block text-center">
                     <img class="p-3 " src="@/assets/img/whatsapp.svg" alt="Imagem do WhatsApp">
                     <a class="d-block p-2 rounded-4 px-3 bg-info " alt="Link do WhatsApp" href=""
                        style="text-decoration: none;">WhatsApp</a>
                 </div>
 
-                <div class="d-block">
+                <div class="d-block text-center">
                     <img class="p-3" src="@/assets/img/instagram.svg" alt="Imagem do Instagram">
                     <a class="d-block p-2 rounded-4 px-3 bg-info" alt="Link do Instagem" href=""
                        style="text-decoration: none;">Instagram</a>
                 </div>
 
-                <div class="d-block">
+                <div class="d-block text-center">
                     <img class="p-3" src="@/assets/img/facebook.svg" alt="Imagem do Facebook">
                     <a class="d-block p-2 rounded-4 px-3 bg-info " alt="Link do Facebook" href=""
                        style="text-decoration: none;">Facebook</a>
                 </div>
 
-                <div class="d-block">
+                <div class="d-block text-center">
                     <img class="p-3" src="@/assets/img/o-email.svg" alt="Imagem do E-mail">
                     <a class="d-block p-2 rounded-4 px-3 bg-info " alt="Link do E-mail" href=""
                        style="text-decoration: none;">E-mail</a>
