@@ -18,7 +18,7 @@
 
             <div v-if="!$vuetify.display.sm" class="col col-md-1 line bg-black h-100 mr-5"></div>
 
-            <div class="col col-md-6 mt-6" :class="{ 'col-md-12': $vuetify.display.sm }">
+            <div class="col col-md-6" :class="{ 'col-md-12': $vuetify.display.sm }">
 
                 <div class="row g-3 d-flex">
 
