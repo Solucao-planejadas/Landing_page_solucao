@@ -6,9 +6,9 @@
         <Carousel class="mb-10" id="Projetos"/>
         <CardComponent :cards="cards"/>
 
-        <FormComponent/>
+        <FormComponent />
         
-        <MidiasSociais class="mb-10"/>
+        <MidiasSociais />
 
         <CarouselEmpresas />
 
