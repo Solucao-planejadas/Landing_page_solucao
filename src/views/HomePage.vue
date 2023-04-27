@@ -8,7 +8,9 @@
 
         <FormComponent/>
         
-        <MidiasSociais/>
+        <MidiasSociais class="mb-10"/>
+
+        <CarouselEmpresas />
 
     </div>
 
@@ -22,10 +24,11 @@ import Carousel from "@/components/CarouselComponent.vue";
 import CardComponent from "@/components/CardComponent.vue";
 import FormComponent from "@/components/FormComponent.vue";
 import MidiasSociais from "@/components/MidiasSociais.vue";
+import CarouselEmpresas from "@/views/CarouselEmpresas.vue";
 
 export default {
     name: "HomePage",
-    components: {FormComponent, CardComponent, Carousel, SobreNos, HeadComponent,MidiasSociais},
+    components: {CarouselEmpresas, FormComponent, CardComponent, Carousel, SobreNos, HeadComponent,MidiasSociais},
     data() {
         return {
             cards: [
