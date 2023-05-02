@@ -1,5 +1,9 @@
 <template>
-    <NavBar :buttons="buttons" :logo="logo"/>
+    <NavBar
+        v-if="currentPage === '/' || currentPage === '/produtos'"
+        :buttons="buttons"
+        :logo="logo"
+    />
     <router-view/>
 </template>
 
@@ -7,7 +11,7 @@
 
 import logo from "@/assets/logo.png";
 import NavBar from "@/components/NavBar.vue";
-
+console.log(window.location.pathname)
 export default {
     name: 'App',
     components: {
@@ -15,6 +19,7 @@ export default {
     },
     data() {
         return {
+            currentPage: window.location.pathname,
             logo: logo,
             buttons: [
                 {
