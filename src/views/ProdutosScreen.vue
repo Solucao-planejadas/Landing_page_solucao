@@ -1,14 +1,16 @@
 <template>
   <NossosProdutos></NossosProdutos>
+  <ProdutosComponent></ProdutosComponent>
 </template>
 
 <script>
 
 import NossosProdutos from "@/components/NossosProdutos.vue";
+import ProdutosComponent from "@/components/ProdutosComponent.vue";
 
 export default {
   name: "ProdutosScreen",
-  components: {NossosProdutos},
+  components: {NossosProdutos,ProdutosComponent},
   data() {
         return {
             cards: [
