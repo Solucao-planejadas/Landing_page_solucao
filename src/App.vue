@@ -11,7 +11,6 @@
 
 import logo from "@/assets/logo.png";
 import NavBar from "@/components/NavBar.vue";
-console.log(window.location.pathname)
 export default {
     name: 'App',
     components: {
