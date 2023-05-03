@@ -119,4 +119,9 @@ export default {
 .nav-link {
     color: var(--secodary-gray);
 }
+
+.nav-link:hover {
+    color: var(--quaternary-gray);
+}
+
 </style>
