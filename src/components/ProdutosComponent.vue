@@ -1,52 +1,57 @@
 <template>
-    <div class="container">
-        <v-card>
-          <v-tabs v-model="tab" color="deep-purple-accent-4" align-tabs="center">
-            <v-tab :value="1">Pronta-Entrega</v-tab>
-            <v-tab :value="2">Sob-Medida</v-tab>
-          </v-tabs>
-          <v-window v-model="tab">
-            <v-window-item v-for="n in 3" :key="n" :value="n">
-              <v-container fluid>
-                <v-row>
-                  <v-col v-for="i in 6" :key="i" cols="12" md="4">
-                    <v-img
-                      :src="`https://picsum.photos/500/300?image=${i * n * 5 + 10}`"
-                      :lazy-src="`https://picsum.photos/10/6?image=${i * n * 5 + 10}`"
-                      aspect-ratio="1"
-                    ></v-img>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-window-item>
-          </v-window>
-        </v-card>
+  <div class="container mt-10">
+    <nav class="d-flex justify-center">
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+
+        <div v-for="button in buttons" :key="button.buttonName">
+          <ButtonTabComponent :buttonName="button.buttonName" :isButtonActive="button.isButtonActive" />
+        </div>
+
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-pronta-entrega" role="tabpanel"
+        aria-labelledby="nav-pronta-entrega-tab">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
-  export default {
-    name: "ProdutosComponent",
-    data: () => ({
-      tab: null,
-    }),
-  }
+
+import ButtonTabComponent from '@/components/ButtonTabComponent.vue';
+
+export default {
+  name: "ProdutosComponent",
+  components: { ButtonTabComponent },
+  data: () => ({
+    buttons: [
+      { buttonName: 'PRONTA-ENTREGA', isButtonActive: true },
+      { buttonName: 'SOB-MEDIDA', isButtonActive: false },
+    ]
+  }),
+};
 </script>
-
-<style scoped>
-.masthead {
-  padding-top: 10rem;
-  padding-bottom: calc(10rem - 4.5rem);
-  background: linear-gradient(
-      to bottom,
-      rgba(92, 77, 66, 0.8) 0%,
-      rgba(92, 77, 66, 0.8) 100%
-    ),
-    url("@/assets/img/mesa.jpg") no-repeat scroll center;
-  background-size: cover;
-}
-
-.description {
-  color: var(--secodary-gray);
-}
-</style>
