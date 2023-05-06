@@ -1,17 +1,17 @@
 <template>
-    <div class="card-group gap-3 d-flex justify-center align-center">
-        <div v-for="(item, index) in contentData" :key="item.index">
-            <div class="card" style="width: 18rem;">
-                <small class="d-none">{{ index }}</small>
-                <img :src="item.src" class="card-img-top" :alt="item.title">
-                <div class="card-body">
-                    <p class="card-text">{{ item.title }}</p>
-                </div>
-                <div :target="'card-' + index" :title="item.description">
-                    <div class="card-overlay" @mouseover="showTooltip = true" @mouseout="showTooltip = false">
-                        <div class="card-overlay-text">
-                            <span class="card-overlay-title">{{ item.title }}</span>
-                        </div>
+    <div v-for="(item, index) in contentData" :key="item.index">
+        <div class="card" style="width: 18rem;">
+            <small class="d-none">{{ index }}</small>
+            <img :src="item.src" class="card-img-top" :alt="item.title">
+            <div class="card-body">
+                <p class="card-text">{{ item.title }}</p>
+            </div>
+
+            <div :title="item.description">
+                <div class="card-overlay" @mouseover="showTooltip = true" @mouseout="showTooltip = false">
+                    <div class="card-overlay-text">
+                        <p class="card-overlay-title">{{ item.title }}</p>
+                        <span class="card-overlay-title">{{ item.title }}</span>
                     </div>
                 </div>
             </div>
