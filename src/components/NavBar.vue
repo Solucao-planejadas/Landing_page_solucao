@@ -4,7 +4,7 @@
             :class="{ scrolled: hasScrolled }"
     >
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="#" @click="() => {router().push('/')}">
                 <img :src="logo" alt="..." height="36"/>
             </a>
             <button
@@ -74,6 +74,9 @@ export default {
             .removeEventListener("click", this.handleClick);
     },
     methods: {
+        router() {
+            return router
+        },
 
         scrollTo(id) {
 
