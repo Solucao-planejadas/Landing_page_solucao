@@ -95,7 +95,17 @@ export default {
                 }
 
                 else if (this.currentPage === '/') {
-                    router.push(`/produtos#${id}`)
+                    router.push(`/produtos`)
+                    setTimeout(() => {
+                        document
+                            .getElementById(id)
+                            .scrollIntoView({
+                                behavior: "smooth",
+                                block: "center",
+                                inline: "center",
+                            });
+                    }, 100);
+
                 }
 
             }

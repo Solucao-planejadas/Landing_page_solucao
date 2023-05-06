@@ -1,6 +1,6 @@
 <template>
 
-    <div class="container mb-10">
+    <div class="container mb-10" id="redesSociais">
 
         <div class="row justify-content-md-center form-container mt-3 ">
 
