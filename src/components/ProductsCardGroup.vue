@@ -1,0 +1,21 @@
+<template>
+    <div class="tab-pane fade" :class="{'show active': isButtonActive}" :id="nav" role="tabpanel" :aria-labelledby="ariaLabelledby">
+        <div class="card-group d-flex justify-center align-center mt-3 gap-4">
+            <ProductCard :contentData="contentDataProntaEntrega"/>
+        </div>
+    </div>
+</template>
+<script>
+import ProductCard from "@/components/ProductCard.vue"
+
+export default {
+    name: 'ProductsCardGroup',
+    components: {ProductCard},
+    props: {
+        contentDataProntaEntrega: {},
+        nav: {},
+        ariaLabelledby: {},
+        isButtonActive: {}
+    }
+}
+</script>

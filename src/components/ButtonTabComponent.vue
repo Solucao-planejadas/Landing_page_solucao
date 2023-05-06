@@ -1,29 +1,31 @@
 <template>
-    <button v-if="isButtonActive"
-        class="nav-link active"
-        id="nav-pronta-entrega-tab"
-        data-bs-toggle="tab"
-        data-bs-target="#nav-pronta-entrega"
-        type="button"
-        role="tab"
-        aria-controls="nav-pronta-entrega"
-        aria-selected="true"
-    >
-        {{ buttonName }}
+    <div>
+        <button v-if="isButtonActive"
+                class="nav-link active"
+                id="nav-home-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#nav-home"
+                type="button"
+                role="tab"
+                aria-controls="nav-home"
+                aria-selected="true"
+        >
+            {{ buttonName }}
         </button>
 
         <button v-if="!isButtonActive"
-        class="nav-link"
-          id="nav-profile-tab"
-          data-bs-toggle="tab"
-          data-bs-target="#nav-profile"
-          type="button"
-          role="tab"
-          aria-controls="nav-profile"
-          aria-selected="false"
+                class="nav-link"
+                id="nav-profile-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#nav-profile"
+                type="button"
+                role="tab"
+                aria-controls="nav-profile"
+                aria-selected="false"
         >
-        {{ buttonName }}
+            {{ buttonName }}
         </button>
+    </div>
 </template>
 
 <script>
