@@ -12,15 +12,17 @@
 
         <div class="tab-content" id="nav-tabContent">
 
-            <ProductsCardGroup :content-data-pronta-entrega="contentDataProntaEntrega"
-                               :nav="'nav-home'"
-                               :aria-labelledby="'nav-home-tab'"
-                               :is-button-active="true"
+            <ProductsCardGroup
+                    :content-data-pronta-entrega="contentDataProntaEntrega"
+                    :nav="'nav-home'"
+                    :aria-labelledby="'nav-home-tab'"
+                    :is-button-active="true"
             />
-            <ProductsCardGroup :content-data-pronta-entrega="contentDataSobMedida"
-                               :nav="'nav-profile'"
-                               :aria-labelledby="'nav-profile-tab'"
-                               :is-button-active="false"
+            <ProductsCardGroup
+                    :content-data-pronta-entrega="contentDataSobMedida"
+                    :nav="'nav-profile'"
+                    :aria-labelledby="'nav-profile-tab'"
+                    :is-button-active="false"
             />
 
 
