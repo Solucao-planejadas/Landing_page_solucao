@@ -58,8 +58,8 @@
                     </div>
 
                     <div class="col-md-12  mb-3  form-floating">
-                        <input type="text"
-                               inputmode="numeric"
+                        <input type="tel"
+                               inputmode="tel"
                                class="form-control"
                                id="inputTelefone"
                                v-mask="'(##) #####-####'"
