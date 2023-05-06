@@ -11,7 +11,10 @@
                 <div class="card-overlay" @mouseover="showTooltip = true" @mouseout="showTooltip = false">
                     <div class="card-overlay-text">
                         <p class="card-overlay-title">{{ item.title }}</p>
-                        <span class="card-overlay-title">{{ item.title }}</span>
+                        <div class="card-overlay-info">
+                            <div class="card-overlay-description">{{ item.title }}</div>
+                            <div class="card-overlay-price">{{ item.title }}</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -68,5 +71,21 @@ img:hover {
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 0.1rem;
+}
+
+.card-overlay-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-overlay-description {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.card-overlay-price {
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 </style>
