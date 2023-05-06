@@ -1,5 +1,5 @@
 <template>
-    <div class="container mt-10">
+    <div class="container mt-10" id="produtos">
         <nav class="d-flex justify-center">
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
 

@@ -1,31 +1,31 @@
 <template>
     <nav
-        class="navbar navbar-expand-lg fixed-top"
-        :class="{ scrolled: hasScrolled }"
+            class="navbar navbar-expand-lg fixed-top"
+            :class="{ scrolled: hasScrolled }"
     >
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img :src="logo" alt="..." height="36" />
+                <img :src="logo" alt="..." height="36"/>
             </a>
             <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
             >
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div
-                class="collapse navbar-collapse justify-content-between flex-grow-0"
-                id="navbarSupportedContent"
+                    class="collapse navbar-collapse justify-content-between flex-grow-0"
+                    id="navbarSupportedContent"
             >
                 <ul
-                    class="navbar-nav ms-auto"
-                    v-for="button in buttons"
-                    v-bind:key="button.id"
+                        class="navbar-nav ms-auto"
+                        v-for="button in buttons"
+                        v-bind:key="button.id"
                 >
                     <li class="nav-item">
                         <button class="nav-link" @click="scrollTo(button.id)">
@@ -39,6 +39,8 @@
 </template>
 
 <script>
+import {router} from "@/router";
+
 export default {
     name: "NavBar",
     props: {
@@ -54,10 +56,12 @@ export default {
     data() {
         return {
             hasScrolled: false,
-            isMenuActive: false
+            isMenuActive: false,
+            currentPage: window.location.pathname
         };
     },
     mounted() {
+
         window.addEventListener("scroll", this.handleScroll);
         document
             .querySelector(".navbar-toggler")
@@ -70,14 +74,32 @@ export default {
             .removeEventListener("click", this.handleClick);
     },
     methods: {
+
         scrollTo(id) {
-            document
-                .getElementById(id)
-                .scrollIntoView({
-                    behavior: "smooth",
-                    block: "center",
-                    inline: "center",
-                });
+
+            try {
+                document
+                    .getElementById(id)
+                    .scrollIntoView({
+                        behavior: "smooth",
+                        block: "center",
+                        inline: "center",
+                    });
+            } catch (err) {
+
+                this.currentPage = window.location.pathname
+
+                if (this.currentPage === '/produtos') {
+                    router.push(`/#${id}`)
+
+                }
+
+                else if (this.currentPage === '/') {
+                    router.push(`/produtos#${id}`)
+                }
+
+            }
+
         },
 
         handleScroll() {

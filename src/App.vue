@@ -36,6 +36,10 @@ export default {
                 {
                     page: "Redes Sociais",
                     id: "redesSociais",
+                },
+                {
+                    page: "Produtos",
+                    id: "produtos"
                 }
             ]
         };
