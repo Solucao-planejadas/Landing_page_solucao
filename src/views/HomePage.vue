@@ -10,6 +10,8 @@
     <MidiasSociais />
 
     <CarouselEmpresas />
+
+
   </div>
 </template>
 
@@ -20,7 +22,7 @@ import Carousel from "@/components/CarouselComponent.vue";
 import CardComponent from "@/components/CardComponent.vue";
 import FormComponent from "@/components/FormComponent.vue";
 import MidiasSociais from "@/components/MidiasSociais.vue";
-import CarouselEmpresas from "@/views/CarouselEmpresas.vue";
+import CarouselEmpresas from "@/components/CarouselEmpresas.vue";
 
 export default {
   name: "HomePage",
