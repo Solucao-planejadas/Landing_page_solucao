@@ -1,6 +1,6 @@
 <template>
     <div class="tab-pane fade" :class="{'show active': isButtonActive}" :id="nav" role="tabpanel" :aria-labelledby="ariaLabelledby">
-        <div class="card-group d-flex justify-center align-center mt-3 gap-4">
+        <div class="card-group d-flex justify-center align-center mt-3 gap-4" :class="{'flex-column': $vuetify.display.xs}">
             <ProductCard :contentData="contentDataProntaEntrega"/>
         </div>
     </div>
