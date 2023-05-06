@@ -1,6 +1,6 @@
 <template>
     <div class="tab-pane fade" :class="{'show active': isButtonActive}" :id="nav" role="tabpanel" :aria-labelledby="ariaLabelledby">
-        <div class="card-group d-flex justify-center align-center mt-3 gap-4" :class="{'flex-column': $vuetify.display.xs || windowWidth < 768 }">
+        <div class="card-group d-flex justify-center flex-row align-center mt-3 gap-4" :class="{'flex-column': $vuetify.display.xs || windowWidth <= 768 }">
             <ProductCard :contentData="contentDataProntaEntrega"/>
         </div>
     </div>
@@ -15,6 +15,9 @@ export default {
         return {
             windowWidth: window.innerWidth
         }
+    },
+    mounted() {
+        this.windowWidth = window.innerWidth
     },
     props: {
         contentDataProntaEntrega: {},
