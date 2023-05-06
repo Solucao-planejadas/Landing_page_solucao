@@ -4,7 +4,7 @@
 
         <div class="row justify-content-md-center form-container mt-3 ">
 
-            <div class=" d-flex justify-center align-center">
+            <div class=" d-flex justify-center align-center mt-10">
                 <h1 class="text-center bg-blue-accent-1 mb-5 p-1 w-75 rounded-1 text-white">Medias Sociais</h1>
             </div>
             <div class="d-flex justify-content-evenly  ">
