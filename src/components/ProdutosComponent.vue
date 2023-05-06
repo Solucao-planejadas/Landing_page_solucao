@@ -70,3 +70,9 @@ export default {
     }),
 };
 </script>
+
+<style scoped>
+    * {
+        transition: all 0.3s ease-in;;
+    }
+</style>
