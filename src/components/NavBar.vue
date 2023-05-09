@@ -1,162 +1,154 @@
 <template>
-    <nav
-            class="navbar navbar-expand-lg fixed-top"
-            :class="{ scrolled: hasScrolled }"
-    >
-        <div class="container">
-            <a class="navbar-brand" href="#" @click="() => {router().push('/')}">
-                <img :src="logo" alt="..." height="36"/>
-            </a>
-            <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-            >
-                <span class="navbar-toggler-icon"></span>
+  <nav
+    class="navbar navbar-expand-lg fixed-top"
+    :class="{ scrolled: hasScrolled }"
+  >
+    <div class="container">
+      <a
+        class="navbar-brand"
+        href="#"
+        @click="
+          () => {
+            router().push('/');
+          }
+        "
+      >
+        <img :src="logo" alt="..." height="36" />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="collapse navbar-collapse justify-content-between flex-grow-0"
+        id="navbarSupportedContent"
+      >
+        <ul
+          class="navbar-nav ms-auto"
+          v-for="button in buttons"
+          v-bind:key="button.id"
+        >
+          <li class="nav-item">
+            <button class="nav-link" @click="scrollTo(button.id)">
+              {{ button.page }}
             </button>
-            <div
-                    class="collapse navbar-collapse justify-content-between flex-grow-0"
-                    id="navbarSupportedContent"
-            >
-                <ul
-                        class="navbar-nav ms-auto"
-                        v-for="button in buttons"
-                        v-bind:key="button.id"
-                >
-                    <li class="nav-item">
-                        <button class="nav-link" @click="scrollTo(button.id)">
-                            {{ button.page }}
-                        </button>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </template>
 
 <script>
-import {router} from "@/router";
+import { router } from "@/router";
 
 export default {
-    name: "NavBar",
-    props: {
-        logo: {
-            required: true,
-            type: String,
-        },
-        buttons: {
-            required: true,
-            type: Array,
-        },
+  name: "NavBar",
+  props: {
+    logo: {
+      required: true,
+      type: String,
     },
-    data() {
-        return {
-            hasScrolled: false,
-            isMenuActive: false,
-            currentPage: window.location.pathname
-        };
+    buttons: {
+      required: true,
+      type: Array,
     },
-    mounted() {
-
-        window.addEventListener("scroll", this.handleScroll);
-        document
-            .querySelector(".navbar-toggler")
-            .addEventListener("click", this.handleClick);
+  },
+  data() {
+    return {
+      hasScrolled: false,
+      isMenuActive: false,
+      currentPage: window.location.pathname,
+    };
+  },
+  mounted() {
+    window.addEventListener("scroll", this.handleScroll);
+    document
+      .querySelector(".navbar-toggler")
+      .addEventListener("click", this.handleClick);
+  },
+  beforeUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+    document
+      .querySelector(".navbar-toggler")
+      .removeEventListener("click", this.handleClick);
+  },
+  methods: {
+    router() {
+      return router;
     },
-    beforeUnmount() {
-        window.removeEventListener("scroll", this.handleScroll);
-        document
-            .querySelector(".navbar-toggler")
-            .removeEventListener("click", this.handleClick);
+
+    scrollTo(id) {
+      try {
+        document.getElementById(id).scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+          inline: "center",
+        });
+      } catch (err) {
+        this.currentPage = window.location.pathname;
+
+        if (this.currentPage === "/produtos") {
+          router.push(`/#${id}`);
+        } else if (this.currentPage === "/") {
+          router.push(`/produtos`);
+          setTimeout(() => {
+            document.getElementById(id).scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+              inline: "center",
+            });
+          }, 100);
+        }
+      }
     },
-    methods: {
-        router() {
-            return router
-        },
 
-        scrollTo(id) {
-
-            try {
-                document
-                    .getElementById(id)
-                    .scrollIntoView({
-                        behavior: "smooth",
-                        block: "center",
-                        inline: "center",
-                    });
-            } catch (err) {
-
-                this.currentPage = window.location.pathname
-
-                if (this.currentPage === '/produtos') {
-                    router.push(`/#${id}`)
-
-                }
-
-                else if (this.currentPage === '/') {
-                    router.push(`/produtos`)
-                    setTimeout(() => {
-                        document
-                            .getElementById(id)
-                            .scrollIntoView({
-                                behavior: "smooth",
-                                block: "center",
-                                inline: "center",
-                            });
-                    }, 100);
-
-                }
-
-            }
-
-        },
-
-        handleScroll() {
-            if (window.scrollY > 0) {
-                this.hasScrolled = true;
-            } else {
-                this.hasScrolled = this.isMenuActive;
-            }
-        },
-        handleClick() {
-
-            this.isMenuActive = !this.isMenuActive;
-
-            if (window.scrollY === 0) {
-
-                this.hasScrolled = this.isMenuActive;
-            } else {
-                if (window.scrollY > 0) {
-                    this.hasScrolled = true;
-                } else {
-                    this.isMenuActive = true;
-                }
-            }
-        },
+    handleScroll() {
+      if (window.scrollY > 0) {
+        this.hasScrolled = true;
+      } else {
+        this.hasScrolled = this.isMenuActive;
+      }
     },
+    handleClick() {
+      this.isMenuActive = !this.isMenuActive;
+
+      if (window.scrollY === 0) {
+        this.hasScrolled = this.isMenuActive;
+      } else {
+        if (window.scrollY > 0) {
+          this.hasScrolled = true;
+        } else {
+          this.isMenuActive = true;
+        }
+      }
+    },
+  },
 };
 </script>
 
 <style scoped>
 .navbar {
-    background: transparent;
+  background: transparent;
 }
 
 .scrolled {
-    background: var(--tertiary-color);
-    transition: background-color 0.5s ease-in-out;
+  background: var(--tertiary-color);
+  transition: background-color 0.5s ease-in-out;
 }
 
 .nav-link {
-    color: var(--secodary-gray);
+  color: var(--secodary-gray);
 }
 
 .nav-link:hover {
-    color: var(--quaternary-gray);
+  color: var(--quaternary-gray);
 }
-
 </style>

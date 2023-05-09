@@ -11,7 +11,6 @@
 
     <CarouselEmpresas />
 
-
   </div>
 </template>
 
