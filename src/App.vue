@@ -6,7 +6,10 @@
   />
   <router-view />
 
-  <RodapeComponent :buttons="buttons" />
+  <RodapeComponent
+          v-if="currentPage === '/' || currentPage === '/produtos'"
+          :buttons="buttons"
+  />
 </template>
 
 <script>
