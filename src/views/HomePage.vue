@@ -1,17 +1,22 @@
 <template>
   <HeadComponent />
+
   <SobreNos id="sobreNos" />
+
   <div class="container">
-    <Carousel class="mb-10" id="Projetos" />
-    <CardComponent :cards="cards" />
+    <div class="gap-3">
+      <div class="row mt-12"><Carousel id="Projetos" /></div>
 
-    <FormComponent />
+      <div class="row mt-12"><CardComponent :cards="cards" /></div>
 
-    <MidiasSociais />
+      <div class="row mt-12"><FormComponent /></div>
 
-    <CarouselEmpresas />
-
+      <div class="row mt-12"><MidiasSociais /></div>
+      
+      <CarouselEmpresas class="mt-12" />
+    </div>
   </div>
+
 </template>
 
 <script>
@@ -26,13 +31,13 @@ import CarouselEmpresas from "@/components/CarouselEmpresas.vue";
 export default {
   name: "HomePage",
   components: {
-    CarouselEmpresas,
-    FormComponent,
-    CardComponent,
-    Carousel,
-    SobreNos,
     HeadComponent,
+    SobreNos,
+    Carousel,
+    CardComponent,
+    FormComponent,
     MidiasSociais,
+    CarouselEmpresas,
   },
   data() {
     return {

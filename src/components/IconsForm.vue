@@ -5,15 +5,15 @@
 
             <div class="text-center mb-2">
                 <img :src="icon_location" class="w-50 mb-2" alt=""/>
-                <p class="color_text_form rounded-4 p-1 px-3">textpo</p>
+                <p class="color_text_form rounded-4 p-1 px-3">texto</p>
             </div>
             <div class="text-center mb-2">
                 <img :src="icon_call" class="w-50 mb-2" alt=""/>
-                <p class="color_text_form rounded-4 p-1 px-3">textpo</p>
+                <p class="color_text_form rounded-4 p-1 px-3">texto</p>
             </div>
             <div class="text-center mb-2">
                 <img :src="icon_sms" class="w-50 mb-2" alt=""/>
-                <p class="color_text_form rounded-4 p-1 px-3">textpo</p>
+                <p class="color_text_form rounded-4 p-1 px-3">texto</p>
             </div>
 
         </div>
