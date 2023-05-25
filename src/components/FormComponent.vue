@@ -3,13 +3,16 @@
         <div class=" d-flex justify-center align-center">
             <h1 class="text-center bg-blue-accent-1 w-50 mb-5 p-1 rounded-1 text-white">Contate-nos</h1>
         </div>
-
-        <div v-if="errorOnSubmit" class="alert alert-danger text-center" role="alert">
-            Preencha todos os campos de forma válida!
+        <div v-if="errorOnSubmit === false && codeResponse === 200" class="alert alert-success text-center" role="alert">
+            Obrigado, logo entraremos em contato!
         </div>
 
-        <div v-if="errorOnSubmit === false" class="alert alert-success text-center" role="alert">
-            Obrigado, logo entraremos em contato!
+        <div v-if="errorOnSubmit === false && erroApi === true && messageApi.length !== 0" class="alert alert-danger text-center" role="alert">
+            {{messageApi}}
+        </div>
+
+        <div v-if="errorOnSubmit === true && erroApi === false" class="alert alert-danger text-center" role="alert">
+            Preencha todos os campos de forma válida!
         </div>
 
         <div class="d-flex gap-2 p-2 justify-center align-center" :class="{ 'flex-column': $vuetify.display.sm || $vuetify.display.xs }">
@@ -34,7 +37,7 @@
                         >
                         <label for="inputNome">Nome</label>
 
-                        <div class="invalid-feedback" v-if="nomeTocado && nomeInvalido">
+                        <div class="invalid-feedback" v-if="errorOnSubmit || nomeTocado && nomeInvalido">
                             O nome deve ter pelo menos 2 caracteres e não deve conter números.
                         </div>
 
@@ -52,7 +55,7 @@
                         >
                         <label for="inputNome">Email</label>
 
-                        <div class="invalid-feedback" v-if="emailTocado && emailInvalido">
+                        <div class="invalid-feedback" v-if="errorOnSubmit || emailTocado && emailInvalido">
                             Por favor, digite um endereço de email válido.
                         </div>
                     </div>
@@ -70,8 +73,23 @@
                         <label for="inputTelefone" class="form-label">Telefone</label>
 
 
-                        <div class="invalid-feedback" v-if="telefoneTocado && telefoneInvalido">
+                        <div class="invalid-feedback" v-if="errorOnSubmit || telefoneTocado && telefoneInvalido">
                             Por favor, digite um número de telefone válido (formato: (xx) xxxxx-xxxx).
+                        </div>
+                    </div>
+
+                    <div class="col-md-12  mb-3  form-floating">
+                        <textarea
+                               class="form-control"
+                               id="descricao"
+                               :class="{ 'is-valid': descricaoValida, 'is-invalid': errorOnSubmit || !descricaoValida && descricaoTocado }"
+                               v-model="descricao" @input="(descricaoTocado = true)"
+                        ></textarea>
+
+                        <label for="descricao" class="form-label">Descrição</label>
+
+                        <div class="invalid-feedback" v-if="errorOnSubmit || !descricaoValida && descricaoTocado">
+                            Por favor, digite pelo menos 5 caracteres.
                         </div>
                     </div>
 
@@ -104,6 +122,7 @@ import icon_sms from '@/assets/svg/🦆 icon _sms_.svg';
 import icon_call from '@/assets/svg/🦆 icon _call_.png';
 import icon_location from '@/assets/svg/🦆 icon _location_.svg';
 import IconsForm from "@/components/IconsForm.vue";
+import axios from "axios";
 
 export default {
     name: 'FormComponent',
@@ -115,23 +134,73 @@ export default {
             icon_call,
             icon_location,
 
+            user: {},
+
             nome: '',
             email: '',
             telefone: '',
+            descricao: '',
             errorOnSubmit: null,
             nomeTocado: false,
             emailTocado: false,
-            telefoneTocado: false
+            telefoneTocado: false,
+            descricaoTocado: false,
+
+            erroApi: false,
+            messageApi: '',
+
+            codeResponse: '',
         };
     },
     methods: {
         submit() {
 
+            this.messageApi = ''
+
             this.errorOnSubmit = this.nomeInvalido || this.emailInvalido || this.telefoneInvalido;
 
-            setTimeout(() => {
-                this.errorOnSubmit = '';
-            }, 2500);
+
+            if (this.errorOnSubmit === false) {
+
+                this.user = {
+                    "name": this.nome,
+                    "phone": this.telefone,
+                    "mail": this.email,
+                    "description": this.descricao
+                }
+
+                axios.post("http://127.0.0.1:8000/send-mail", this.user)
+                .then((response) => {
+                    this.codeResponse = 200
+                    this.erroApi = false
+                    this.messageApi = ''
+                    this.nome = ''
+                    this.email = ''
+                    this.telefone = ''
+                    this.descricao = ''
+                    this.nomeTocado = false
+                    this.emailTocado = false
+                    this.telefoneTocado = false
+                    this.descricaoTocado = false
+                    console.log(response)
+                })
+                .catch((error) => {
+                    this.erroApi = true
+                    this.messageApi = error.response.data.detail
+                    console.log("error")
+                    console.log(error)
+                });
+
+
+                setTimeout(() => {
+                    this.codeResponse = ''
+                    this.erroApi = false
+                    this.errorOnSubmit = '';
+                }, 4500);
+
+
+
+            }
 
         }
     },
@@ -148,7 +217,9 @@ export default {
         telefoneValido() {
             return !this.telefoneInvalido && this.telefone.trim().length > 0;
         },
-
+        descricaoValida() {
+            return this.descricao.trim().length > 5;
+        },
         nomeComNumeros() {
             return /\d/.test(this.nome.trim());
         },
