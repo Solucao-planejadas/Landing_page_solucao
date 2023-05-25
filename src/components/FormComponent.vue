@@ -76,10 +76,19 @@
                     </div>
 
                     <div class="col-12 d-flex justify-center align-center">
-                        <button type="submit" class="btn btn-primary"
-                                :class="{'btn-danger': errorOnSubmit, 'btn-success': errorOnSubmit === false}"
-                                @click="submit()">Submit
-                        </button>
+                        <v-btn
+                            :disabled="errorOnSubmit === false"
+                            :loading="errorOnSubmit === true"
+
+                            class="btn btn-primary text-none mb-4"
+                            :class="{'btn-danger': errorOnSubmit, 'btn-success': errorOnSubmit === false, 'btn-light': this.errorOnSubmit || this.errorOnSubmit === false}"
+                            color="indigo-darken-3"
+                            size="default"
+                            variant="flat"
+                            @click="submit()"
+                        >
+                            Enviar
+                        </v-btn>
                     </div>
                 </div>
             </div>
