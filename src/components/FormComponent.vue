@@ -3,18 +3,29 @@
         <div class=" d-flex justify-center align-center">
             <h1 class="text-center bg-blue-accent-1 w-50 mb-5 p-1 rounded-1 text-white">Contate-nos</h1>
         </div>
-        <div v-if="errorOnSubmit === false && codeResponse === 200" class="alert alert-success text-center" role="alert">
+<!--        <div v-if="errorOnSubmit === false && codeResponse === 200" class="alert alert-success text-center" role="alert">-->
+<!--            Obrigado, logo entraremos em contato!-->
+<!--        </div>-->
+
+<!--        <div v-if="errorOnSubmit === false && erroApi === true && messageApi.length !== 0" class="alert alert-danger text-center" role="alert">-->
+<!--            {{messageApi}}-->
+<!--        </div>-->
+
+<!--        <div v-if="errorOnSubmit === true && erroApi === false" class="alert alert-danger text-center" role="alert">-->
+<!--            Preencha todos os campos de forma válida!-->
+<!--        </div>-->
+        {{errorOnSubmit}}
+        <div v-if="codeResponse === 200" class="alert alert-success text-center" role="alert">
             Obrigado, logo entraremos em contato!
         </div>
 
-        <div v-if="errorOnSubmit === false && erroApi === true && messageApi.length !== 0" class="alert alert-danger text-center" role="alert">
-            {{messageApi}}
+        <div v-if="erroApi && messageApi.length !== 0" class="alert alert-danger text-center" role="alert">
+            {{ messageApi }}
         </div>
 
-        <div v-if="errorOnSubmit === true && erroApi === false" class="alert alert-danger text-center" role="alert">
+        <div v-if="errorOnSubmit && !erroApi" class="alert alert-danger text-center" role="alert">
             Preencha todos os campos de forma válida!
         </div>
-
         <div class="d-flex gap-2 p-2 justify-center align-center" :class="{ 'flex-column': $vuetify.display.sm || $vuetify.display.xs }">
 
             <IconsForm :icon_call="icon_call" :icon_location="icon_location" :icon_sms="icon_sms"/>
@@ -154,54 +165,45 @@ export default {
     },
     methods: {
         submit() {
-
-            this.messageApi = ''
-
-            this.errorOnSubmit = this.nomeInvalido || this.emailInvalido || this.telefoneInvalido;
-
+            this.messageApi = '';
+            this.errorOnSubmit = this.nomeInvalido || this.emailInvalido || this.telefoneInvalido || !this.descricaoValida;
 
             if (this.errorOnSubmit === false) {
-
                 this.user = {
-                    "name": this.nome,
-                    "phone": this.telefone,
-                    "mail": this.email,
-                    "description": this.descricao
-                }
+                    name: this.nome,
+                    phone: this.telefone,
+                    mail: this.email,
+                    description: this.descricao
+                };
 
                 axios.post("http://127.0.0.1:8000/send-mail", this.user)
-                .then((response) => {
-                    this.codeResponse = 200
-                    this.erroApi = false
-                    this.messageApi = ''
-                    this.nome = ''
-                    this.email = ''
-                    this.telefone = ''
-                    this.descricao = ''
-                    this.nomeTocado = false
-                    this.emailTocado = false
-                    this.telefoneTocado = false
-                    this.descricaoTocado = false
-                    console.log(response)
-                })
-                .catch((error) => {
-                    this.erroApi = true
-                    this.messageApi = error.response.data.detail
-                    console.log("error")
-                    console.log(error)
-                });
-
-
-                setTimeout(() => {
-                    this.codeResponse = ''
-                    this.erroApi = false
-                    this.errorOnSubmit = '';
-                }, 4500);
-
-
-
+                    .then((response) => {
+                        this.codeResponse = 200;
+                        this.erroApi = false;
+                        this.messageApi = '';
+                        this.nome = '';
+                        this.email = '';
+                        this.telefone = '';
+                        this.descricao = '';
+                        this.nomeTocado = false;
+                        this.emailTocado = false;
+                        this.telefoneTocado = false;
+                        this.descricaoTocado = false;
+                        console.log(response);
+                    })
+                    .catch((error) => {
+                        this.erroApi = true;
+                        this.messageApi = error.response.data.detail;
+                        console.log("error");
+                        console.log(error);
+                    });
             }
 
+            setTimeout(() => {
+                this.codeResponse = ''
+                this.erroApi = false
+                this.errorOnSubmit = '';
+            }, 4500);
         }
     },
     computed: {
