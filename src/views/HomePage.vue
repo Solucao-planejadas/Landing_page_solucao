@@ -16,7 +16,6 @@
       <CarouselEmpresas class="mt-12" />
     </div>
   </div>
-
 </template>
 
 <script>

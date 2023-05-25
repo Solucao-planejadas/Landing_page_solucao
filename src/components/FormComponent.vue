@@ -157,7 +157,7 @@ export default {
             return this.nome.trim().length < 2 || this.nomeComNumeros;
         },
         emailInvalido() {
-            return !/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(this.email.trim());
+            return !/^[a-z0-9!#$%&'+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'+/=?^_`{|}~-]+)@(?:[a-z0-9](?:[a-z0-9-][a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(this.email.trim());
         },
         telefoneInvalido() {
             return !/^\(\d{2}\) \d{4,5}-\d{4}$/.test(this.telefone.trim());
