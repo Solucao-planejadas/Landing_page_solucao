@@ -82,9 +82,6 @@ export default {
             }, 4500);
         }
     },
-    mounted() {
-        console.log(`${process.env.VUE_APP_API_URL}/send-mail`)
-    },
     computed: {
         vuetify() {
             return vuetify
