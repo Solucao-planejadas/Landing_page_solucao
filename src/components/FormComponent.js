@@ -45,7 +45,7 @@ export default {
                     mail: this.email,
                     description: this.descricao
                 };
-                axios.post(`${process.env.VUE_APP_API_URL}`, this.user)
+                axios.post(`${process.env.VUE_APP_API_URL}/send-mail`, this.user)
                     .then((response) => {
                         this.codeResponse = 200;
                         this.erroApi = false;
