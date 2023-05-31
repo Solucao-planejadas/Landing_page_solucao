@@ -80,6 +80,7 @@
 
                     <div class="col-md-12  mb-3  form-floating">
                         <textarea
+                                rows="5"
                                class="form-control"
                                id="descricao"
                                :class="{ 'is-valid': descricaoValida, 'is-invalid': errorOnSubmit || !descricaoValida && descricaoTocado }"
