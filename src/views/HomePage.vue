@@ -9,7 +9,6 @@
 
       <div class="row mt-12"><CardComponent :cards="cards" /></div>
 
-        {{`${process.env.VUE_APP_API_URL}/send-mail`}}
       <div class="row mt-12"><FormComponent /></div>
 
       <div class="row mt-12"><MidiasSociais /></div>
