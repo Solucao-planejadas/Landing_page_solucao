@@ -15,7 +15,8 @@
         <div v-if="errorOnSubmit && !erroApi" class="alert alert-danger text-center" role="alert">
             Preencha todos os campos de forma válida!
         </div>
-        <div class="d-flex gap-2 p-2 justify-center align-center" :class="{ 'flex-column': $vuetify.display.sm || $vuetify.display.xs }">
+        <div class="d-flex gap-2 p-2 justify-center align-center"
+             :class="{ 'flex-column': $vuetify.display.sm || $vuetify.display.xs }">
 
             <IconsForm :icon_call="icon_call" :icon_location="icon_location" :icon_sms="icon_sms"/>
 
@@ -81,10 +82,10 @@
                     <div class="col-md-12  mb-3  form-floating">
                         <textarea
                                 rows="5"
-                               class="form-control"
-                               id="descricao"
-                               :class="{ 'is-valid': descricaoValida, 'is-invalid': errorOnSubmit || !descricaoValida && descricaoTocado }"
-                               v-model="descricao" @input="(descricaoTocado = true)"
+                                class="form-control"
+                                id="descricao"
+                                :class="{ 'is-valid': descricaoValida, 'is-invalid': errorOnSubmit || !descricaoValida && descricaoTocado }"
+                                v-model="descricao" @input="(descricaoTocado = true)"
                         ></textarea>
 
                         <label for="descricao" class="form-label">Descrição</label>
@@ -96,15 +97,15 @@
 
                     <div class="col-12 d-flex justify-center align-center">
                         <v-btn
-                            :disabled="errorOnSubmit === false"
-                            :loading="errorOnSubmit === true"
+                                :disabled="errorOnSubmit === false"
+                                :loading="errorOnSubmit === true"
 
-                            class="btn btn-primary text-none mb-4"
-                            :class="{'btn-danger': errorOnSubmit, 'btn-success': errorOnSubmit === false, 'btn-light': this.errorOnSubmit || this.errorOnSubmit === false}"
-                            color="indigo-darken-3"
-                            size="default"
-                            variant="flat"
-                            @click="submit()"
+                                class="btn btn-primary text-none mb-4"
+                                :class="{'btn-danger': errorOnSubmit, 'btn-success': errorOnSubmit === false, 'btn-light': this.errorOnSubmit || this.errorOnSubmit === false}"
+                                color="indigo-darken-3"
+                                size="default"
+                                variant="flat"
+                                @click="submit()"
                         >
                             Enviar
                         </v-btn>
