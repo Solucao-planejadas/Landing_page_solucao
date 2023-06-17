@@ -16,7 +16,6 @@ const routes = [
         path: '/login',
         name: 'login',
         component: LoginPage,
-        meta: { requiresAuth: false, requiresNoAuth: true }
     },
     {
         path: "/produtos",
@@ -27,7 +26,6 @@ const routes = [
         path: "/:pathMatch(.*)*",
         name: "NotFound",
         component: NotFound,
-        meta: { requiresAuth: true },
     },
 ];
 
