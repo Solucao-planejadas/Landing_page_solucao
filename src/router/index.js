@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import HomeScreen from "../views/HomePage.vue";
 import ProdutosScreen from "../views/ProdutosScreen.vue";
-import NotFound from "../../../../EQ/landing_page/src/components/NotFound.vue";
+import NotFound from "../components/NotFound.vue";
 import LoginPage from "@/views/LoginPage.vue";
 import { store } from "@/store";
 
@@ -26,6 +26,7 @@ const routes = [
         path: "/:pathMatch(.*)*",
         name: "NotFound",
         component: NotFound,
+        meta: { requiresAuth: true },
     },
 ];
 
