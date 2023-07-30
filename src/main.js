@@ -8,4 +8,6 @@ import { store } from '@/store'
 
 createApp(App).use(store).use(vuetify).use(VueTheMask).use(router).mount('#app')
 
+import "bootstrap"
 import "bootstrap/dist/js/bootstrap.js"
+import "bootstrap-icons/font/bootstrap-icons.css"                 
