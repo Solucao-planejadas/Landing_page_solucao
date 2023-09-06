@@ -43,12 +43,9 @@ export const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     if(to.matched.some(record => record.meta.requiresAuth)) {
-
-        console.log(store.getters.isAuthenticated)
-
         if (store.getters.isAuthenticated) {
-            next()
-            return
+            next();
+            return;
         }
         next('/login')
     } else {
