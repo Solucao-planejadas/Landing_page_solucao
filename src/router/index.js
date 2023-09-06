@@ -4,7 +4,8 @@ import HomeScreen from "../views/HomePage.vue";
 import ProdutosScreen from "../views/ProdutosScreen.vue";
 import NotFound from "../components/NotFound.vue";
 import LoginPage from "@/views/LoginPage.vue";
-import { store } from "@/store";
+import DashComponent from "@/components/DashComponent.vue";
+import store from "@/store";
 
 const routes = [
     {
@@ -26,7 +27,12 @@ const routes = [
         path: "/:pathMatch(.*)*",
         name: "NotFound",
         component: NotFound,
-        meta: { requiresAuth: true },
+    },
+    {
+        path: "/dash",
+        name: "DashComponent",
+        component: DashComponent,
+        meta: {requiresAuth: true},
     },
 ];
 
@@ -35,20 +41,17 @@ export const router = createRouter({
     routes,
 });
 
-router.beforeEach(async (to, from, next) => {
-    const isAuthenticated = store.getters.isAuthenticated;
+router.beforeEach((to, from, next) => {
+    if(to.matched.some(record => record.meta.requiresAuth)) {
 
-    console.log(to.meta)
-    console.log(to.meta.requiresAuth)
-    console.log(isAuthenticated)
+        console.log(store.getters.isAuthenticated)
 
-    if (to.meta.requiresAuth && !isAuthenticated) {
-        if (await store.dispatch('checkAuthentication')) {
-            next();
-        } else {
-            next('/login');
+        if (store.getters.isAuthenticated) {
+            next()
+            return
         }
+        next('/login')
     } else {
-        next();
+        next()
     }
 })
