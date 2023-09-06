@@ -13,4 +13,5 @@ axios.defaults.baseURL = 'http://localhost:3000/';
 
 createApp(App).use(store).use(vuetify).use(VueTheMask).use(router).mount('#app')
 
+
 import "bootstrap/dist/js/bootstrap.js"

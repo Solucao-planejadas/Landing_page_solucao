@@ -14,7 +14,7 @@
             <p class="d-none">{{ index }}</p>
 
             <div class="d-flex justify-content-between align-center gap-2">
-              <button class="btn btn-sm">
+              <button class="btn btn-sm" @click="$router.push('/produtos')">
                 Ver coleção
               </button>
 
