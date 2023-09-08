@@ -5,7 +5,9 @@ import ProdutosScreen from "../views/ProdutosScreen.vue";
 import NotFound from "../components/NotFound.vue";
 import LoginPage from "@/views/LoginPage.vue";
 import DashComponent from "@/components/DashComponent.vue";
+import Gallery from "@/components/GalleryComponent.vue";
 import store from "@/store";
+
 
 const routes = [
     {
@@ -33,6 +35,12 @@ const routes = [
         name: "DashComponent",
         component: DashComponent,
         meta: {requiresAuth: true},
+    },
+    {
+        path: "/Gallery",
+        name: "Gallery",
+        component: Gallery,
+
     },
 ];
 

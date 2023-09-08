@@ -1,20 +1,50 @@
 <template>
-  <div class="login">
+<div class="limiter ">
     <div>
-      <form @submit.prevent="submit">
-        <div>
-          <label for="username">Username:</label>
-          <input type="text" name="username" v-model="form.username" />
-        </div>
-        <div>
-          <label for="password">Password:</label>
-          <input type="password" name="password" v-model="form.password" />
-        </div>
-        <button type="submit">Submit</button>
-      </form>
-      <p v-if="showError" id="error">Username or Password is incorrect</p>
+
     </div>
-  </div>
+		<div class="container-login100 ">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt " data-tilt>
+					<img src="../assets/img/img-02.png" alt="IMG">
+				</div>
+
+
+          <div class="border-start border-3 border-black  css"></div>
+
+          <form class="login100-form validate-form " @submit.prevent="submit">
+            <span class="login100-form-title">
+              Login 
+            </span>
+
+            <div class="wrap-input100 validate-input" >
+              <input class="input100" type="text" name="username" v-model="form.username" placeholder="Usuário:"/>
+              <span class="focus-input100"></span> 
+              <span class="symbol-input100">
+                <i class="bi bi-person-circle" aria-hidden="true"></i>
+              </span>
+            </div>
+
+            <div class="wrap-input100 validate-input" data-validate = "Password is required">
+              <input class="input100" type="password" name="password" v-model="form.password" placeholder="Senha:"/>
+              <span class="focus-input100"></span>
+              <span class="symbol-input100">
+                <i class="bi bi-lock" aria-hidden="true"></i>
+              </span>
+            </div>
+
+            <div class="container-login100-form-btn  ">
+              <button type="submit" class="login100-form-btn ">
+                Login
+              </button>
+            </div>
+            <div v-if="error" class="error">{{  error }} </div>
+            <p v-if="showError" id="error">Username or Password is incorrect</p>
+          </form>
+          
+			</div>
+		</div>
+	</div>
 
 </template>
 
@@ -77,5 +107,8 @@ input {
 #error {
   color: red;
 }
+
+
+
 
 </style>
