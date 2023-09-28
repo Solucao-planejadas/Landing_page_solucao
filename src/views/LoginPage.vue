@@ -38,7 +38,7 @@
                 Login
               </button>
             </div>
-            <div v-if="error" class="error">{{  error }} </div>
+<!--            <div v-if="error" class="error">{{  error }} </div>-->
             <p v-if="showError" id="error">Username or Password is incorrect</p>
           </form>
           
