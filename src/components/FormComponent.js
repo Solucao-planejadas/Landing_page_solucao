@@ -46,7 +46,7 @@ export default {
                     description: this.descricao
                 };
                 axios.post(
-                    `http://127.0.0.1:8000/send-mail`,
+                    `${process.env.VUE_APP_API_URL}/send-mail`,
                     this.user, {
                         headers: {
                             'Content-Type': 'application/json;charset=UTF-8',
