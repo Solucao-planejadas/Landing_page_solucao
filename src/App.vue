@@ -1,13 +1,21 @@
 <template>
   <NavBar
-    v-if="currentPage === '/' || currentPage === '/produtos'"
+    v-if="validatePathLandingPage()"
     :buttons="buttons"
     :logo="logo"
   />
+
+  <NavBar
+    v-if="validatePathAdminPage()"
+    :buttons="adminButtons"
+    :logo="logo"
+    :not-transparent="true"
+  />
+
   <router-view />
 
   <RodapeComponent
-          v-if="currentPage === '/' || currentPage === '/produtos'"
+          v-if="validatePathLandingPage()"
           :buttons="buttons"
   />
 </template>
@@ -49,8 +57,28 @@ export default {
           id: "produtos",
         },
       ],
+      adminButtons: [
+        {
+          page: "Home",
+          id: "home",
+        },
+      ]
     };
   },
+  methods: {
+    validatePathLandingPage() {
+      if (this.currentPage === undefined) this.currentPage = window.location.pathname
+      return this.currentPage === '/' || this.currentPage === '/produtos'
+    },
+    validatePathAdminPage() {
+      if (this.currentPage === undefined) this.currentPage = window.location.pathname
+      return this.currentPage === '/gallery'
+    }
+  },
+  mounted() {
+    this.currentPage = window.location.pathname
+    console.log(this.currentPage)
+  }
 };
 </script>
 

@@ -84,6 +84,9 @@ export default {
 </script>
 
 <style scoped>
+
+@import "@/assets/css/login.css";
+
 label {
   padding: 12px 12px 12px 0;
   display: inline-block;
@@ -107,8 +110,5 @@ input {
 #error {
   color: red;
 }
-
-
-
 
 </style>

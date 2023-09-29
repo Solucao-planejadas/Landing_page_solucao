@@ -1,16 +1,14 @@
 <template>
   <nav
     class="navbar navbar-expand-lg fixed-top"
-    :class="{ scrolled: hasScrolled }"
+    :class="{ notTransparent: notTransparent && !hasScrolled, scrolled: hasScrolled }"
   >
     <div class="container">
       <a
         class="navbar-brand"
         href="#"
         @click="
-          () => {
-            router().push('/');
-          }
+          goToHome()
         "
       >
         <img :src="logo" alt="..." height="36" />
@@ -60,6 +58,11 @@ export default {
       required: true,
       type: Array,
     },
+    notTransparent: {
+      type: Boolean,
+      require: false,
+      default: false
+    }
   },
   data() {
     return {
@@ -84,7 +87,9 @@ export default {
     router() {
       return router;
     },
-
+    goToHome() {
+      window.location.href = '/'
+    },
     scrollTo(id) {
       try {
         document.getElementById(id).scrollIntoView({
@@ -97,7 +102,13 @@ export default {
 
         if (this.currentPage === "/produtos") {
           router.push(`/#${id}`);
-        } else if (this.currentPage === "/") {
+        }
+
+        else if (this.currentPage === "/gallery") {
+          this.goToHome()
+        }
+
+        else if (this.currentPage === "/") {
           router.push(`/produtos`);
           setTimeout(() => {
             document.getElementById(id).scrollIntoView({
@@ -142,6 +153,10 @@ export default {
 .scrolled {
   background: var(--tertiary-color);
   transition: background-color 0.5s ease-in-out;
+}
+
+.notTransparent {
+  background: var(--primary-color);
 }
 
 .nav-link {
