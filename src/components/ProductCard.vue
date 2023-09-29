@@ -10,17 +10,29 @@
                 <div class="card-overlay" @mouseover="showTooltip = true" @mouseout="showTooltip = false">
                     <div class="card-overlay-text">
                         <p class="card-overlay-title">{{ item.title }}</p>
-                        <div class="card-overlay-description">{{ item.description }}</div>
+
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="'#productCard' + item.index">
+                          Detalhes
+                        </button>
+
                     </div>
                 </div>
             </div>
         </div>
+
+      <ModalProdutosCard :modal-id="item.index" :title="item.title" :images="item.images"/>
+
     </div>
+
+
 </template>
 
 <script>
+import ModalProdutosCard from "@/components/ModalProdutosCard.vue";
+
 export default {
     name: "ProductCard",
+  components: {ModalProdutosCard},
     props: {
         contentData: {},
     },

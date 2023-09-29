@@ -1,7 +1,7 @@
 <template>
     <div class="tab-pane fade" :class="{'show active': isButtonActive}" :id="nav" role="tabpanel" :aria-labelledby="ariaLabelledby">
         <div class="card-group d-flex justify-center flex-row align-center mt-3 gap-4" :class="{'flex-column': $vuetify.display.xs || windowWidth <= 768 }">
-            <ProductCard :contentData="contentDataProntaEntrega"/>
+            <ProductCard :contentData="contentData"/>
         </div>
     </div>
 </template>
@@ -20,7 +20,7 @@ export default {
         this.windowWidth = window.innerWidth
     },
     props: {
-        contentDataProntaEntrega: {},
+        contentData: {},
         nav: {},
         ariaLabelledby: {},
         isButtonActive: {}

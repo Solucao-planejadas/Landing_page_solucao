@@ -117,7 +117,7 @@
     </div>
 </template>
 
-<script src="./FormComponent.js"></script>
+<script src="@/components/FormComponent.js"></script>
 
 <style scoped>
 .form-container {

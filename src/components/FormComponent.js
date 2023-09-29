@@ -1,7 +1,7 @@
 import {vuetify} from "@/plugins";
-import icon_sms from '@/assets/svg/🦆 icon _sms_.svg';
-import icon_call from '@/assets/svg/🦆 icon _call_.png';
-import icon_location from '@/assets/svg/🦆 icon _location_.svg';
+import icon_sms from '@/assets/svg/icon _sms_.svg';
+import icon_call from '@/assets/svg/icon _call_.png';
+import icon_location from '@/assets/svg/icon _location_.svg';
 import IconsForm from "@/components/IconsForm.vue";
 import axios from "axios";
 

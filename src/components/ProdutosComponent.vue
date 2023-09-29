@@ -1,34 +1,34 @@
 <template>
-    <div class="container mt-10" id="produtos">
-        <nav class="d-flex justify-center">
-            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+  <div class="container mt-10" id="produtos">
+    <nav class="d-flex justify-center">
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
 
-                <div v-for="button in buttons" :key="button.buttonName">
-                    <ButtonTabComponent :buttonName="button.buttonName" :isButtonActive="button.isButtonActive"/>
-                </div>
-
-            </div>
-        </nav>
-
-        <div class="tab-content" id="nav-tabContent">
-
-            <ProductsCardGroup
-                    :content-data-pronta-entrega="contentDataProntaEntrega"
-                    :nav="'nav-home'"
-                    :aria-labelledby="'nav-home-tab'"
-                    :is-button-active="true"
-            />
-            <ProductsCardGroup
-                    :content-data-pronta-entrega="contentDataSobMedida"
-                    :nav="'nav-profile'"
-                    :aria-labelledby="'nav-profile-tab'"
-                    :is-button-active="false"
-            />
-
-
+        <div v-for="button in buttons" :key="button.buttonName">
+          <ButtonTabComponent :buttonName="button.buttonName" :isButtonActive="button.isButtonActive"/>
         </div>
 
+      </div>
+    </nav>
+
+    <div class="tab-content" id="nav-tabContent">
+
+      <ProductsCardGroup
+          :content-data="contentDataProntaEntrega"
+          :nav="'nav-home'"
+          :aria-labelledby="'nav-home-tab'"
+          :is-button-active="true"
+      />
+      <ProductsCardGroup
+          :content-data="contentDataSobMedida"
+          :nav="'nav-profile'"
+          :aria-labelledby="'nav-profile-tab'"
+          :is-button-active="false"
+      />
+
+
     </div>
+
+  </div>
 
 </template>
 
@@ -38,41 +38,275 @@ import ButtonTabComponent from '@/components/ButtonTabComponent.vue';
 import ProductsCardGroup from "@/components/ProductsCardGroup.vue";
 
 export default {
-    name: "ProdutosComponent",
-    components: {ProductsCardGroup, ButtonTabComponent},
-    data: () => ({
-        buttons: [
-            {buttonName: 'PRONTA-ENTREGA', isButtonActive: true},
-            {buttonName: 'SOB-MEDIDA', isButtonActive: false},
+  name: "ProdutosComponent",
+  components: {ProductsCardGroup, ButtonTabComponent},
+  data: () => ({
+    buttons: [
+      {buttonName: 'PRONTA-ENTREGA', isButtonActive: true},
+      {buttonName: 'SOB-MEDIDA', isButtonActive: false},
+    ],
+    contentDataProntaEntrega: [
+      {
+        index: 1,
+        title: 'PRONTA-ENTREGA',
+        src: 'https://picsum.photos/500/300?image=20',
+        images: [
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
         ],
-        contentDataProntaEntrega: [
-            {title: 'PRONTA-ENTREGA', src: 'https://picsum.photos/500/300?image=20', description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."},
-            {title: 'PRONTA-ENTREGA', src: 'https://picsum.photos/500/300?image=20', description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."},
-            {title: 'PRONTA-ENTREGA', src: 'https://picsum.photos/500/300?image=20', description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."},
-            {title: 'PRONTA-ENTREGA', src: 'https://picsum.photos/500/300?image=20', description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."},
-            {title: 'PRONTA-ENTREGA', src: 'https://picsum.photos/500/300?image=20', description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."},
-            {title: 'PRONTA-ENTREGA', src: 'https://picsum.photos/500/300?image=20', description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."},
-            {title: 'PRONTA-ENTREGA', src: 'https://picsum.photos/500/300?image=20', description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."},
-            {title: 'PRONTA-ENTREGA', src: 'https://picsum.photos/500/300?image=20', description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."},
-            {title: 'PRONTA-ENTREGA', src: 'https://picsum.photos/500/300?image=20', description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."},
+        description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+      },
+      {
+        index: 2,
+        title: 'PRONTA-ENTREGA',
+        src: 'https://picsum.photos/500/300?image=20',
+        images: [
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
         ],
-        contentDataSobMedida: [
-            {title: 'SOB-MEDIDA', src: 'https://picsum.photos/500/300?image=20', description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."},
-            {title: 'SOB-MEDIDA', src: 'https://picsum.photos/500/300?image=20', description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."},
-            {title: 'SOB-MEDIDA', src: 'https://picsum.photos/500/300?image=20', description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."},
-            {title: 'SOB-MEDIDA', src: 'https://picsum.photos/500/300?image=20', description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."},
-            {title: 'SOB-MEDIDA', src: 'https://picsum.photos/500/300?image=20', description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."},
-            {title: 'SOB-MEDIDA', src: 'https://picsum.photos/500/300?image=20', description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."},
-            {title: 'SOB-MEDIDA', src: 'https://picsum.photos/500/300?image=20', description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."},
-            {title: 'SOB-MEDIDA', src: 'https://picsum.photos/500/300?image=20', description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."},
-            {title: 'SOB-MEDIDA', src: 'https://picsum.photos/500/300?image=20', description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."},
+        description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+      },
+      {
+        index: 3,
+        title: 'PRONTA-ENTREGA',
+        src: 'https://picsum.photos/500/300?image=20',
+        images: [
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
         ],
-    }),
+        description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+      },
+      {
+        index: 4,
+        title: 'PRONTA-ENTREGA',
+        src: 'https://picsum.photos/500/300?image=20',
+        images: [
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+        ],
+        description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+      },
+      {
+        index: 5,
+        title: 'PRONTA-ENTREGA',
+        src: 'https://picsum.photos/500/300?image=20',
+        images: [
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+        ],
+        description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+      },
+      {
+        index: 6,
+        title: 'PRONTA-ENTREGA',
+        src: 'https://picsum.photos/500/300?image=20',
+        images: [
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+        ],
+        description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+      },
+      {
+        index: 7,
+        title: 'PRONTA-ENTREGA',
+        src: 'https://picsum.photos/500/300?image=20',
+        images: [
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+        ],
+        description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+      },
+      {
+        index: 8,
+        title: 'PRONTA-ENTREGA',
+        src: 'https://picsum.photos/500/300?image=20',
+        images: [
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+        ],
+        description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+      },
+      {
+        index: 9,
+        title: 'PRONTA-ENTREGA',
+        src: 'https://picsum.photos/500/300?image=20',
+        images: [
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+        ],
+        description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+      },
+    ],
+    contentDataSobMedida: [
+      {
+        index: 1,
+        title: 'SOB-MEDIDA',
+        src: 'https://picsum.photos/500/300?image=20',
+        images: [
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+        ],
+        description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+      },
+      {
+        index: 2,
+        title: 'SOB-MEDIDA',
+        src: 'https://picsum.photos/500/300?image=20',
+        images: [
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+        ],
+        description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+      },
+      {
+        index: 3,
+        title: 'SOB-MEDIDA',
+        src: 'https://picsum.photos/500/300?image=20',
+        images: [
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+        ],
+        description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+      },
+      {
+        index: 4,
+        title: 'SOB-MEDIDA',
+        src: 'https://picsum.photos/500/300?image=20',
+        images: [
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+        ],
+        description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+      },
+      {
+        index: 5,
+        title: 'SOB-MEDIDA',
+        src: 'https://picsum.photos/500/300?image=20',
+        images: [
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+        ],
+        description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+      },
+      {
+        index: 6,
+        title: 'SOB-MEDIDA',
+        src: 'https://picsum.photos/500/300?image=20',
+        images: [
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+        ],
+        description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+      },
+      {
+        index: 7,
+        title: 'SOB-MEDIDA',
+        src: 'https://picsum.photos/500/300?image=20',
+        images: [
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+        ],
+        description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+      },
+      {
+        index: 8,
+        title: 'SOB-MEDIDA',
+        src: 'https://picsum.photos/500/300?image=20',
+        images: [
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+        ],
+        description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+      },
+      {
+        index: 9,
+        title: 'SOB-MEDIDA',
+        src: 'https://picsum.photos/500/300?image=20',
+        images: [
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+          'https://picsum.photos/500/300?image=20',
+        ],
+        description: "Lorem Ipsum is simply dummy textLorem Ipsum is simply dummy textLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+      },
+    ],
+  }),
 };
 </script>
 
 <style scoped>
-    * {
-        transition: all 0.3s ease-in;;
-    }
+* {
+  transition: all 0.3s ease-in;;
+}
 </style>
