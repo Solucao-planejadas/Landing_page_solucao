@@ -20,10 +20,7 @@
                                         <h5 class="h5 text-white">Seu Portfólio</h5>
                                     </div>
                                     <CardErroMessage v-if="erroIf1" :errorMessageCard="errorMessage"></CardErroMessage>
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-grow-1 ms-3">
-                                            Titulo: Calango lindo </div>
-                                    </div>
+
 
                                     <div class="input-group p-3 ">
                                         <span class="input-group-text " id="inputGroup-sizing-default">Titulo</span>
@@ -36,7 +33,6 @@
                                         <div class="flex-grow-1 ms-3">
                                             Sua Capa </div>
                                     </div>
-
 
 
                                     <div class="d-flex justify-content-center">
@@ -63,12 +59,24 @@
 
 
                                     <h6 class="ms-3 mt-4">
+                                        Tipo
+                                    </h6>
+
+                                    <div class=" m-3">
+                                        <select class="form-select" name="type" id="" v-model="dadosModal.typeId" disabled>
+                                            <option value="1">Sobre Medida</option>
+                                            <option value="2">Pronto Entrega</option>
+                                        </select>
+                                    </div>
+
+                                    <h6 class="ms-3 mt-4">
                                         texto
                                     </h6>
 
                                     <div class="form-floating m-3">
                                         <textarea class="form-control mb-3" placeholder="Leave a comment here"
-                                            id="floatingTextarea2" style="height: 100px"></textarea>
+                                            id="floatingTextarea2" style="height: 100px"
+                                            v-model="dadosModal.description"></textarea>
                                         <label for="floatingTextarea2">Comments</label>
                                     </div>
 
@@ -99,16 +107,15 @@
                                     <div>
                                         <!-- {{ dadosModalFotos.gallerysItems }} -->
                                         <div class=" card-group mt-3 g-4 d-flex flex-wrap"
-                                            v-for="(photo) in store.getters.StateGalleryItems" :key="photo.id">
-
-                                            <!-- {{ photo }} -->
-                                            <div class="card m-2 border" v-for="item in photo" :key="item.id">
+                                            v-for="(photo) in store.getters.StateGalleryItems" :key="photo">
+                                            <!-- {{ photo[index] }} -->
+                                            <div class="card m-2 border" v-for="(item) in photo" :key="item.id">
                                                 <div class="border-bottom">
                                                     <img :src="item.itemFileName" class="card-img-top" alt="">
                                                 </div>
                                                 <div class="card-body d-grid gap-2">
                                                     <button type="button" class="btn btn-danger"
-                                                        @click="deletarFoto(item.id, item.id), DellFoto()">
+                                                        @click=" DellFoto(item.id)">
                                                         <font-awesome-icon icon="trash" />
                                                         Deletar
                                                     </button>
@@ -137,23 +144,20 @@
 
 
                                         <h6>
-                                            Carregue Sua Imagem (Uma por vez)
+                                            Carregue Suas Imagem:
                                         </h6>
 
 
 
                                         <div class="input-group">
                                             <input type="file" class="form-control btn btn-outline-primary"
-                                                @change="adicionarFoto" :disabled="inputBloqueado" aria-label="Upload"
-                                                ref="fileInput">
+                                                @change="adicionarFoto" aria-label="Upload" ref="fileInput" multiple>
                                             <button class="btn btn-outline-secondary btn-success text-white" type="submit"
-                                                id="inputGroupFileAddon04" @click=" AddFoto()"
-                                                :disabled="botaoBloqueado">Enviar</button>
+                                                id="inputGroupFileAddon04" @click=" AddFoto()">Enviar</button>
 
                                         </div>
 
 
-                                        <button @click="teste()">ttttt</button>
                                     </div>
                                 </div>
                             </div>
@@ -205,7 +209,12 @@ export default {
 
             },
             FotoCapa: null,
-            dadosModal: [],
+            dadosModal: {
+                title: null,
+                description: null,
+                photoType: null,
+                galleryCover: null,
+            },
             dadosModalFotos: store.getters.StateGalleryItems,
             isLoading: false, // Defina isso como verdadeiro quando estiver carregando
             loadingMessage: "Carregando dados...",
@@ -218,7 +227,8 @@ export default {
                 foto: null,
                 id: null,
 
-            }
+            },
+            fotos: []
         }
     },
     components: {
@@ -232,13 +242,12 @@ export default {
     },
     created() {
         this.dados();
-        this.salvealbum();
 
     },
     methods: {
         validateOnBack: Boolean,
-        ...mapActions(["GetGallery", "GetGalleryItems", "addfoto", "getfotos", "GetAlbum", "upalbum"]),
-        ...mapGetters(["GetToken"]),
+        ...mapActions(["GetGallery", "GetGalleryItems", "DellGalleryItems", "UpGalleryItems", "UpGallery", "GetGallery"]),
+        ...mapGetters([""]),
         ...mapMutations(["resetItems"]),
 
         adicionarCapa(event) {
@@ -257,45 +266,46 @@ export default {
         },
 
         async UpAlbum() {
+
+
+
+
             this.isLoading = true;
             const album = new FormData();
 
 
 
-            album.append("title", this.dadosModal.portifolio.Titulo);
-            album.append("portifolioCover", this.FotoCapa);
-            album.append("description", this.dadosModal.portifolio.Descricao);
+            album.append("title", this.dadosModal.title);
+            album.append("galleryCover", this.FotoCapa);
+            album.append("photoType", this.dadosModal.typeId);
+            album.append("description", this.dadosModal.description);
             // album.append("portifolioPhotos[]", this.album.Fotos);
 
             const avatarPayload = {
-                token: this.GetToken(),
-                album: album,
-                id: this.dadosModal.portifolio.idtb_portifolio
+                token: store.getters.StateToken.token,
+                infos: album,
+                id: this.modalId
             };
-            const getPayload = {
-                token: this.GetToken(),
-                id: this.dadosModal.portifolio.idtb_portifolio
-            };
+
 
             try {
 
-                await this.upalbum(avatarPayload)
 
                 // alert(`Album Cadastrado com sucesso`);
+                await this.UpGallery(avatarPayload)
+                await this.GetGallery()
+                this.dadosModal = store.getters.StateGallery.gallerys[0]
                 this.isLoading = false;
-                this.ifalbum = true;
-                console.log(this.isLoading, "loading")
-                await this.getfotos(getPayload)
-                this.FotoCapa = this.dadosModal.portifolio.Capa
 
             } catch (error) {
-                this.isLoading = false;
-                const message = error.request.response
-                this.errorMessage = JSON.parse(message)
-                this.erroIf1 = true
-                setTimeout(() => {
-                    this.erroIf1 = false
-                }, 4000);
+                // this.isLoading = false;
+                // const message = error.request.response
+                // this.errorMessage = JSON.parse(message)
+                // this.erroIf1 = true
+                // setTimeout(() => {
+                //     this.erroIf1 = false
+                // }, 4000);
+                console.log(error)
 
             }
 
@@ -306,38 +316,40 @@ export default {
         },
         async AddFoto() {
 
-            console.log(this.editaralbum.foto)
+            // console.log(this.editaralbum.foto)
             this.isLoading = true;
             const foto = new FormData();
 
 
+            for (let index = 0; index < this.fotos.length; index++) {
 
+                foto.append("galleryItens[]", this.fotos[index]);
+            }
 
-            foto.append("photo", this.editaralbum.foto[0]);
 
             const Payload = {
-                token: this.GetToken(),
+                token: store.getters.StateToken.token,
                 photo: foto,
-                id: this.editaralbum.id
+                id: this.modalId
             };
-            const getPayload = {
-                token: this.GetToken(),
-                id: this.editaralbum.id
-            };
+
             try {
 
-                await this.addfoto(Payload)
+                await this.UpGalleryItems(Payload)
                 // alert(`Album Cadastrado com sucesso`);
                 this.isLoading = false;
                 this.ifalbum = true;
                 console.log(this.isLoading, "loading")
-                await this.getfotos(getPayload)
-                this.dadosModal = store.getters.StatealbumMe;
-                console.log(store.getters.StatealbumMe, "dadossss")
-                if (this.dadosModal.photos.length >= 5) {
-                    this.inputBloqueado = true;
-                    this.botaoBloqueado = true;
+                const ttt = null
+                this.resetItems(ttt)
+
+                const payload = {
+                    token: store.getters.StateToken.token,
+                    id: this.modalId
                 }
+                await this.GetGalleryItems(payload)
+                this.ifalbum = true;
+                console.log(this.isLoading, "loading")
 
             } catch (error) {
                 this.isLoading = false;
@@ -355,18 +367,26 @@ export default {
 
 
         },
-        async DellFoto() {
+        async DellFoto(id) {
 
 
             const avatarPayload = {
-                token: this.GetToken(),
-                id: this.editaralbum.id
+                token: store.getters.StateToken.token,
+                id: id
             };
 
             try {
 
-                await this.Delfoto(avatarPayload)
+                await this.DellGalleryItems(avatarPayload)
                 // alert(`Album Cadastrado com sucesso`);
+                const ttt = null
+                this.resetItems(ttt)
+
+                const payload = {
+                    token: store.getters.StateToken.token,
+                    id: this.modalId
+                }
+                await this.GetGalleryItems(payload)
                 this.ifalbum = true;
                 console.log(this.isLoading, "loading")
 
@@ -387,13 +407,6 @@ export default {
 
         },
 
-
-
-        salvealbum() {
-            if (store.getters.StatealbumMe != undefined || store.getters.StatealbumMe != null) {
-                this.albums = store.getters.StatealbumMe;
-            }
-        },
 
 
         sair() {
@@ -406,30 +419,19 @@ export default {
             // Lógica para adicionar a foto ao array
             // ...
 
-            this.botaoBloqueado = false;
 
             // Atualiza o objeto editaralbum.foto com a nova foto
-            this.editaralbum.foto = event.target.files;
-            this.editaralbum.id = this.dadosModal.portifolio.idtb_portifolio;
-            // Bloqueie o input se houver 5 fotos no array
-            if (this.dadosModal.photos.length >= 5) {
-                this.inputBloqueado = true;
-                this.botaoBloqueado = true;
-                this.$refs.fileInput.value = null;
-
-            }
+            this.fotos = event.target.files;
         },
-        deletarFoto(index, idtb_img_video) {
+        deletarFoto(index, id) {
             // Remova a foto do array com base no índice
-            this.dadosModal.photos.splice(index, 1);
 
-            // Libere o input de fotos se houver menos de 5 fotos no array
-            if (this.dadosModal.photos.length < 5) {
-                this.inputBloqueado = false;
-            }
+            const valor = store.getters.StateGalleryItems
+            this.dellItems(valor.splice(index, 1));
+
 
             // Aqui você pode adicionar a lógica para deletar a foto no backend usando o ID idtb_img_video
-            this.editaralbum.id = idtb_img_video
+            this.editaralbum.id = id
         },
 
 
