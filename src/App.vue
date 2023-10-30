@@ -72,7 +72,7 @@ export default {
     },
     validatePathAdminPage() {
       if (this.currentPage === undefined) this.currentPage = window.location.pathname
-      return this.currentPage === '/gallery'
+      return this.currentPage.toLowerCase() === '/gallery'
     }
   },
   mounted() {
