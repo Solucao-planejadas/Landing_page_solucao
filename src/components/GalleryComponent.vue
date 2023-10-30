@@ -10,29 +10,31 @@
     <div class="table-responsive">
       <table class="table table-bordered table-hover table-light">
         <thead>
-        <tr class="">
-          <th scope="col" class="col-md-2">#</th>
-          <th scope="col" class="col-md-2">Tipo</th>
-          <th scope="col" class="col-md-2">Nome</th>
-          <th scope="col" class="col-md-2">Data de Modificação</th>
-          <th scope="col" class="col-md-2">Options</th>
-        </tr>
+          <tr class="">
+            <th scope="col" class="col-md-2">#</th>
+            <th scope="col" class="col-md-2">Tipo</th>
+            <th scope="col" class="col-md-2">Nome</th>
+            <th scope="col" class="col-md-2">Data de Modificação</th>
+            <th scope="col" class="col-md-2">Options</th>
+          </tr>
         </thead>
-        <tbody>
-        <tr v-for="item in items" v-bind:key="item.id">
-          <th scope="row">{{ item.id }}</th>
-          <td>{{ item.tipo }}</td>
-          <td>{{ item.nome }}</td>
-          <td>{{ item.dtUpdate }}</td>
-          <td class="d-flex justify-content-center align gap-2">
-            <button class="btn btn-danger">
-              Delete
-            </button>
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-              Editar
-            </button>
-          </td>
-        </tr>
+        <tbody v-if="ifGallery">
+          <tr v-for="(item, index) in items" :key="item[index]">
+            <th scope="row">{{ item.id }}</th>
+            <td>{{ item.typeId }}</td>
+            <td>{{ item.title }}</td>
+            <td>{{ item.updated_at }}</td>
+            <td class="d-flex justify-content-center align gap-2">
+              <button class="btn btn-danger">
+                Delete
+              </button>
+              <button class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="'#editarportfolio' + item.id"
+                @click="Editar(item.id)">
+                Editar
+              </button>
+              <ModalEditarGallery :modalId="item.id" :albomModal="item"></ModalEditarGallery>/>
+            </td>
+          </tr>
         </tbody>
       </table>
 
@@ -41,55 +43,76 @@
   </div>
 
   <ModalGallery />
-
 </template>
 
 
 <script>
 import ModalGallery from "@/components/ModalGallery.vue";
-
+import ModalEditarGallery from "@/components/ModalEditarGallery.vue";
+import { mapActions, mapMutations } from "vuex";
+import store from "@/store";
 export default {
-  components: {ModalGallery},
+  components: { ModalGallery, ModalEditarGallery },
   data() {
     return {
-      items: [
-        {
-          id: 1,
-          tipo: "Mamaco",
-          nome: "Mamaco.png",
-          dtUpdate: "2004-03-17"
-        }, {
-          id: 1,
-          tipo: "Mamaco",
-          nome: "Mamaco.png",
-          dtUpdate: "2004-03-17"
-        }, {
-          id: 1,
-          tipo: "Mamaco",
-          nome: "Mamaco.png",
-          dtUpdate: "2004-03-17"
-        }, {
-          id: 1,
-          tipo: "Mamaco",
-          nome: "Mamaco.png",
-          dtUpdate: "2004-03-17"
-        }, {
-          id: 1,
-          tipo: "Mamaco",
-          nome: "Mamaco.png",
-          dtUpdate: "2004-03-17"
-        }, {
-          id: 1,
-          tipo: "Mamaco",
-          nome: "Mamaco.png",
-          dtUpdate: "2004-03-17"
-        },
-      ]
+      items: {
+        id: null,
+        title: null,
+        CoverPhotoFileName: null,
+        created_at: null,
+        updated_at: null,
+        typeId: null,
+
+      },
+      ifGallery: false
     }
-  }
+  },
+  computed: {
+    store() {
+      return store
+    },
+  },
+  created() {
+    this.getGallerys();
+  },
+  methods: {
+    ...mapActions(["LogIn", "GetGallery", "GetGalleryItems"]),
+    ...mapMutations(["resetItems"]),
+    async getGallerys() {
+
+      if (store.getters.StateGallery != null || store.getters.StateGallery != undefined) {
+        this.items = store.getters.StateGallery.gallerys
+        // console.log(store.getters.StateGallery)
+        console.log(this.items, "hhhhhhhhhhhhhhhhhhhhhhhh")
+        this.ifGallery = true
+      }
+
+
+      await this.GetGallery();
+    },
+    async Editar(id) {
+
+      try {
+        const ttt = null
+        this.resetItems(ttt)
+
+        const payload = {
+          token: store.getters.StateToken.token,
+          id: id
+        }
+        await this.GetGalleryItems(payload)
+      } catch (error) {
+        console.log(error)
+      }
+
+
+
+
+    },
+  },
+
 }
 </script>
 
 
-<style scoped>
-</style>
+<style scoped></style>
