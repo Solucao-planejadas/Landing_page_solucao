@@ -1,9 +1,11 @@
-import Vuex from 'vuex';
+import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
-import auth from './modules/auth';
+import auth from "./modules/auth";
+import gallery from "./modules/gallery";
 export default new Vuex.Store({
   modules: {
-    auth
+    auth,
+    gallery,
   },
-  plugins: [createPersistedState()]
+  plugins: [createPersistedState()],
 });
