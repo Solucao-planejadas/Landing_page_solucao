@@ -25,7 +25,7 @@
             <td>{{ item.title }}</td>
             <td>{{ item.updated_at }}</td>
             <td class="d-flex justify-content-center align gap-2">
-              <button class="btn btn-danger">
+              <button class="btn btn-danger" @click="dellGallery(item.id)">
                 Delete
               </button>
               <button class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="'#editarportfolio' + item.id"
@@ -76,7 +76,7 @@ export default {
     this.getGallerys();
   },
   methods: {
-    ...mapActions(["LogIn", "GetGallery", "GetGalleryItems"]),
+    ...mapActions(["LogIn", "GetGallery", "GetGalleryItems", "DellGallery"]),
     ...mapMutations(["resetItems"]),
     async getGallerys() {
 
@@ -101,6 +101,26 @@ export default {
           id: id
         }
         await this.GetGalleryItems(payload)
+      } catch (error) {
+        console.log(error)
+      }
+
+
+
+
+    },
+    async dellGallery(id) {
+
+      try {
+
+        const payload = {
+          token: store.getters.StateToken.token,
+          id: id
+        }
+        await this.DellGallery(payload)
+        await this.GetGallery();
+        await this.getGallerys();
+
       } catch (error) {
         console.log(error)
       }

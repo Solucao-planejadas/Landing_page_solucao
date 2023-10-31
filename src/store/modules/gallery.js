@@ -94,7 +94,7 @@ const actions = {
   },
   async DellGallery({ commit }, { id, token }) {
     const request = await axios.delete(
-      `http://localhost:3000/api/gallery/album/delete/${id}`,
+      `http://localhost:3000/api/gallery/delete/album/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -102,6 +102,7 @@ const actions = {
       }
     );
     console.log(request, "teste perna");
+
     await commit("dellGalleryItems", {
       dellgallerysItems: await request.data,
     });
