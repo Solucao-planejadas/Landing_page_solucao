@@ -13,7 +13,7 @@ const actions = {
   async GetGallery({ commit }) {
     const request = await axios.get("http://localhost:3000/gallery");
     // console.log(request);
-    console.log(request.data.gallery, "teste perna 01");
+    // console.log(request.data.gallery, "teste perna 01");
     await commit("setGallery", { gallerys: await request.data.gallery });
   },
 
@@ -66,6 +66,37 @@ const actions = {
       {
         headers: {
           "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(request, "teste perna");
+    await commit("dellGalleryItems", {
+      dellgallerysItems: await request.data,
+    });
+  },
+  async CreateGallery({ commit }, { token, infos }) {
+    console.log();
+    const request = await axios.post(
+      `http://localhost:3000/api/gallery`,
+      infos,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(request, "teste perna");
+    await commit("dellGalleryItems", {
+      dellgallerysItems: await request.data,
+    });
+  },
+  async DellGallery({ commit }, { id, token }) {
+    const request = await axios.delete(
+      `http://localhost:3000/api/gallery/album/delete/${id}`,
+      {
+        headers: {
           Authorization: `Bearer ${token}`,
         },
       }

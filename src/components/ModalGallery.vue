@@ -10,32 +10,36 @@
         <div class="modal-body">
           <div class="mb-3">
             <label class="form-label" for="">Titulo</label>
-            <input class="form-control" type="text" name="" id="">
+            <input class="form-control" type="text" name="" id="" v-model="dados.Titulo">
           </div>
           <div class="mb-3">
             <label class="form-label" for="">Tipo de produto</label>
-            <input class="form-control" type="text" name="" id="">
+            <select class="form-select" name="type" id="" v-model="dados.typeId">
+              <option selected>Escolha o Tipo</option>
+              <option value="1">Sobre Medida</option>
+              <option value="2">Pronto Entrega</option>
+            </select>
           </div>
 
           <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="dados.Texto"></textarea>
           </div>
 
           <div class="mb-3">
             <label for="formFile" class="form-label">Foto de capa</label>
-            <input class="form-control" type="file" id="formFile">
+            <input class="form-control" type="file" id="formFile" @change="GetCapa">
           </div>
 
           <div class="mb-3">
             <label for="formFile" class="form-label">Fotos do produto</label>
-            <input class="form-control" multiple type="file" id="formFile">
+            <input class="form-control" multiple type="file" id="formFile" @change="GetFotos">
           </div>
 
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Sair</button>
-          <button type="button" class="btn btn-primary">Salvar</button>
+          <button type="button" class="btn btn-primary" @click="createGallery()">Criar</button>
         </div>
       </div>
     </div>
@@ -44,11 +48,91 @@
 
 
 <script>
+import store from "@/store";
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 export default {
-  name: 'ModalGallery'
+  name: 'ModalGallery',
+  data() {
+    return {
+      dados: {
+        Titulo: null,
+        typeId: null,
+        Texto: null,
+        Capa: null,
+        Fotos: [],
+      },
+      isLoading: false,
+    }
+  },
+  computed: {
+    store() {
+      return store
+    },
+  },
+  methods: {
+    validateOnBack: Boolean,
+    ...mapActions(["GetGallery", "CreateGallery"]),
+    ...mapGetters([""]),
+    ...mapMutations(["resetItems"]),
+    GetCapa(event) {
+      this.dados.Capa = event.target.files[0]
+    },
+    GetFotos(event) {
+      this.dados.Fotos = event.target.files
+    },
+    async createGallery() {
+
+      this.isLoading = true;
+
+
+      const album = new FormData();
+
+      // console.log(this.dados.Fotos)
+
+      for (let index = 0; index < this.dados.Fotos.length; index++) {
+        album.append("galleryItens[]", this.dados.Fotos[index]);
+      }
+
+      album.append("title", this.dados.Titulo);
+      album.append("galleryCover", this.dados.Capa);
+      album.append("photoType", this.dados.typeId);
+      album.append("description", this.dados.Texto);
+      // album.append("portifolioPhotos[]", this.album.Fotos);
+
+      const avatarPayload = {
+        token: store.getters.StateToken.token,
+        infos: album,
+      };
+
+
+      try {
+
+
+        // alert(`Album Cadastrado com sucesso`);
+        await this.CreateGallery(avatarPayload)
+        await this.GetGallery()
+        this.$router.push("/Gallery");
+        this.isLoading = false;
+
+      } catch (error) {
+        // this.isLoading = false;
+        // const message = error.request.response
+        // this.errorMessage = JSON.parse(message)
+        // this.erroIf1 = true
+        // setTimeout(() => {
+        //     this.erroIf1 = false
+        // }, 4000);
+        console.log(error)
+
+      }
+
+
+
+
+
+    },
+  },
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
