@@ -37,10 +37,10 @@ const routes = [
         meta: {requiresAuth: true},
     },
     {
-        path: "/Gallery",
-        name: "Gallery",
+        path: "/gallery",
+        name: "gallery",
         component: Gallery,
-
+        meta: {requiresAuth: true},
     },
 ];
 
@@ -51,6 +51,7 @@ export const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     if(to.matched.some(record => record.meta.requiresAuth)) {
+        console.log(store.getters.isAuthenticated)
         if (store.getters.isAuthenticated) {
             next();
             return;

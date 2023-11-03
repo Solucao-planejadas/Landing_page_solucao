@@ -83,6 +83,7 @@ const actions = {
     });
   },
   async DellGallery({ commit }, { id, token }) {
+    console.log(token)
     const request = await axios.delete(
       `http://localhost:3000/api/gallery/delete/album/${id}`,
       {

@@ -36,10 +36,10 @@
                 Delete
               </button>
               <button class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="'#editarportfolio' + item.id"
-                @click="Editar(item.id)">
+                @click="editar(item.id)">
                 Editar
               </button>
-              <ModalEditarGallery :modalId="item.id" :albomModal="item"></ModalEditarGallery>/>
+              <ModalEditarGallery :modalId="item.id" :albomModal="item"></ModalEditarGallery>
             </td>
           </tr>
         </tbody>
@@ -53,7 +53,7 @@
 <script>
 import ModalGallery from "@/components/ModalGallery.vue";
 import ModalEditarGallery from "@/components/ModalEditarGallery.vue";
-import { mapActions, mapMutations } from "vuex";
+import {mapActions, mapGetters, mapMutations} from "vuex";
 import store from "@/store";
 import { format } from 'date-fns';
 
@@ -83,6 +83,7 @@ export default {
   methods: {
     ...mapActions(["LogIn", "GetGallery", "GetGalleryItems", "DellGallery"]),
     ...mapMutations(["resetItems"]),
+    ...mapGetters(["StateToken"]),
     async getGallerys() {
       if (store.getters.StateGallery != null || store.getters.StateGallery != undefined) {
         this.items = store.getters.StateGallery.gallerys
@@ -90,12 +91,12 @@ export default {
       }
       await this.GetGallery();
     },
-    async Editar(id) {
+    async editar(id) {
       try {
         const ttt = null
         this.resetItems(ttt)
         const payload = {
-          token: store.getters.StateToken.token,
+          token: this.StateToken(),
           id: id
         }
         await this.GetGalleryItems(payload)
@@ -106,7 +107,7 @@ export default {
     async dellGallery(id) {
       try {
         const payload = {
-          token: store.getters.StateToken.token,
+          token: this.StateToken(),
           id: id
         }
         await this.DellGallery(payload)

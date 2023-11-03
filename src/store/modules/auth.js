@@ -4,7 +4,7 @@ const state = {
   token: null,
 };
 const getters = {
-  isAuthenticated: (state) => !!state.user,
+  isAuthenticated: (state) => !!state.token,
   StateUser: (state) => state.user,
   StateToken: (state) => state.token,
 };
@@ -27,17 +27,16 @@ const actions = {
   },
 
   async LogOut({ commit }) {
-    let user = null;
-    commit("logout", user);
+    let token = null;
+    commit("logout", token);
   },
 };
 const mutations = {
-  setUser(state, token) {
-    // console.log(token);
+  setUser(state, {token}) {
     state.token = token;
   },
   LogOut(state) {
-    state.user = null;
+    state.token = null;
   },
 };
 export default {

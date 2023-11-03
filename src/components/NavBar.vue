@@ -88,9 +88,15 @@ export default {
       return router;
     },
     goToHome() {
-      window.location.href = '/'
+      router.push('/')
     },
     scrollTo(id) {
+
+      if (id === 'login') {
+        router.push('/login')
+        return
+      }
+
       try {
         document.getElementById(id).scrollIntoView({
           behavior: "smooth",
@@ -98,13 +104,16 @@ export default {
           inline: "center",
         });
       } catch (err) {
+
+        console.log(err)
+
         this.currentPage = window.location.pathname;
 
         if (this.currentPage === "/produtos") {
           router.push(`/#${id}`);
         }
 
-        else if (this.currentPage === "/gallery") {
+        else if (this.currentPage.toLowerCase() === "/gallery") {
           this.goToHome()
         }
 

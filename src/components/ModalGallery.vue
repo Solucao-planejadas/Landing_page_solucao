@@ -80,7 +80,7 @@ export default {
   methods: {
     validateOnBack: Boolean,
     ...mapActions(["GetGallery", "CreateGallery"]),
-    ...mapGetters([""]),
+    ...mapGetters(["StateToken"]),
     ...mapMutations(["resetItems"]),
     GetCapa(event) {
       this.dados.Capa = event.target.files[0]
@@ -98,7 +98,7 @@ export default {
       album.append("photoType", this.dados.typeId);
       album.append("description", this.dados.Texto);
       const avatarPayload = {
-        token: store.getters.StateToken.token,
+        token: this.StateToken(),
         infos: album,
       };
       try {

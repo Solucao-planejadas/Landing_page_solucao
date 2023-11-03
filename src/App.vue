@@ -24,6 +24,7 @@
 import logo from "@/assets/logo.png";
 import NavBar from "@/components/NavBar.vue";
 import RodapeComponent from "@/components/RodapeComponent.vue";
+import {router} from "@/router";
 
 export default {
   name: "App",
@@ -56,6 +57,10 @@ export default {
           page: "Produtos",
           id: "produtos",
         },
+        {
+          page: "Login",
+          id: "login",
+        }
       ],
       adminButtons: [
         {
@@ -67,17 +72,26 @@ export default {
   },
   methods: {
     validatePathLandingPage() {
-      if (this.currentPage === undefined) this.currentPage = window.location.pathname
+      if (this.currentPage === undefined) this.currentPage = this.$route.path
       return this.currentPage === '/' || this.currentPage === '/produtos'
     },
     validatePathAdminPage() {
-      if (this.currentPage === undefined) this.currentPage = window.location.pathname
+      if (this.currentPage === undefined) this.currentPage = this.$route.path
       return this.currentPage.toLowerCase() === '/gallery'
-    }
+    },
   },
-  mounted() {
-    this.currentPage = window.location.pathname
-    console.log(this.currentPage)
+  created() {
+    router.beforeEach((to) => {
+      this.currentPage = to.path
+      this.validatePathLandingPage()
+      this.validatePathAdminPage()
+    })
+  },
+  watch: {
+    '$route' () {
+      this.validatePathLandingPage()
+      this.validatePathAdminPage()
+    }
   }
 };
 </script>
