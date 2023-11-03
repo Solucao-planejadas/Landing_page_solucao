@@ -1,17 +1,19 @@
 <template>
-    <div v-for="(item, index) in contentData" :key="item.index">
+    <div v-for="(item) in contentData" :key="item.id">
         <div class="card" style="width: 18rem;">
-            <small class="d-none">{{ index }}</small>
-            <img :src="item.src" class="card-img-top" :alt="item.title">
+            <small class="d-none">{{ item.id }}</small>
+            <img :src="item.CoverPhotoFileName" class="card-img-top" :alt="item.title">
             <div class="card-body">
                 <p class="card-text">{{ item.title }}</p>
             </div>
-            <div :title="item.description">
+            <div>
                 <div class="card-overlay" @mouseover="showTooltip = true" @mouseout="showTooltip = false">
                     <div class="card-overlay-text">
                         <p class="card-overlay-title">{{ item.title }}</p>
 
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="'#productCard' + item.index">
+                        <button
+                            type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            :data-bs-target="'#productCard' + item.id">
                           Detalhes
                         </button>
 
@@ -20,7 +22,7 @@
             </div>
         </div>
 
-      <ModalProdutosCard :modal-id="item.index" :title="item.title" :images="item.images"/>
+      <ModalProdutosCard :modal-id="item.id" :title="item.title" :description="item.description"/>
 
     </div>
 

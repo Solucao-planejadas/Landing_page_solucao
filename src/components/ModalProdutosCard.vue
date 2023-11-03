@@ -8,17 +8,30 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p>{{ modalId }}</p>
 
-          <div class="row row-cols-1 row-cols-md-2 g-4">
+          <div class="row row-cols-1 row-cols-md-12 g-4">
 
-            <div v-for="(image, index) in images" class="col" :key="index">
-              <div class="card">
-                <img :src="image" class="card-img-top" :alt="title">
-              </div>
+            <div>
+              <p class="font-weight-bold">Descrição: </p>
+              <p class="mt-3 mb-3">
+                {{description}}
+              </p>
             </div>
-
           </div>
+
+          <hr class="mt-4 mb-4">
+          <div>
+            <p class="font-weight-bold mb-3">Fotos: </p>
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+              <div v-for="(image, index) in images" class="col" :key="index">
+                <div class="card">
+                  <img :src="image.itemFileName" class="card-img-top" :alt="title">
+                </div>
+              </div>
+
+            </div>
+          </div>
+
 
         </div>
         <div class="modal-footer">
@@ -30,18 +43,41 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: 'ModalProdutosCard',
+  data() {
+    return {
+      images: [],
+    }
+  },
+  async mounted() {
+    await this.getImages()
+  },
+  methods: {
+    getImages() {
+      axios.get(`/gallery/${this.modalId}`)
+          .then(response => {
+            this.images = response.data.gallery
+          })
+          .catch(err => {
+            console.log(err)
+            return [];
+          })
+    }
+  },
   props: {
     modalId: {
-      type: String,
+      type: Number,
       require: true
     },
     title: {
       type: String,
       require: true
     },
-    images: {
+    description: {
+      type: String,
       require: true
     }
   }
