@@ -11,12 +11,12 @@ const getters = {
 };
 const actions = {
   async GetGallery({ commit }) {
-    const request = await axios.get("http://localhost:3000/gallery");
+    const request = await axios.get("/gallery");
     await commit("setGallery", { gallerys: await request.data.gallery });
   },
 
   async GetGalleryItems({ commit }, { id, token }) {
-    const request = await axios.get(`http://localhost:3000/gallery/${id}`, {
+    const request = await axios.get(`/gallery/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -27,7 +27,7 @@ const actions = {
   },
   async DellGalleryItems({ commit }, { id, token }) {
     const request = await axios.delete(
-      `http://localhost:3000/api/gallery/delete/photo/${id}`,
+      `/api/gallery/delete/photo/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -40,7 +40,7 @@ const actions = {
   },
   async UpGalleryItems({ commit }, { id, token, photo }) {
     const request = await axios.post(
-      `http://localhost:3000/api/gallery/add/${id}`,
+      `/api/gallery/add/${id}`,
       photo,
       {
         headers: {
@@ -54,7 +54,7 @@ const actions = {
   },
   async UpGallery({ commit }, { id, token, infos }) {
     const request = await axios.post(
-      `http://localhost:3000/api/gallery/update/${id}`,
+      `/api/gallery/update/${id}`,
       infos,
       {
         headers: {
@@ -69,7 +69,7 @@ const actions = {
   },
   async CreateGallery({ commit }, { token, infos }) {
     const request = await axios.post(
-      `http://localhost:3000/api/gallery`,
+      `/api/gallery`,
       infos,
       {
         headers: {
@@ -85,7 +85,7 @@ const actions = {
   async DellGallery({ commit }, { id, token }) {
     console.log(token)
     const request = await axios.delete(
-      `http://localhost:3000/api/gallery/delete/album/${id}`,
+      `/api/gallery/delete/album/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
