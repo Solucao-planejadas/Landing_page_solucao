@@ -5,6 +5,10 @@
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastrar Produtos</h1>
+          <CardErroMessage v-if="erroIf" :errorMessageCard="errorMessage"></CardErroMessage>
+          <div v-if="sucessoMessage" class="alert alert-success d-flex text-center" role="alert">
+            Cadastrado com Sucesso.
+          </div>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -50,8 +54,12 @@
 <script>
 import store from "@/store";
 import { mapActions, mapGetters, mapMutations } from 'vuex'
+import CardErroMessage from "@/components/CardErroMessage.vue"
 export default {
   name: 'ModalGallery',
+  components: {
+    CardErroMessage
+  },
   data() {
     return {
       dados: {
@@ -62,6 +70,9 @@ export default {
         Fotos: [],
       },
       isLoading: false,
+      errorMessage: null,
+      erroIf: false,
+      sucessoMessage: false,
     }
   },
   computed: {
@@ -82,7 +93,6 @@ export default {
     },
     async createGallery() {
 
-      this.isLoading = true;
 
 
       const album = new FormData();
@@ -112,16 +122,19 @@ export default {
         await this.CreateGallery(avatarPayload)
         await this.GetGallery()
         this.$router.push("/Gallery");
-        this.isLoading = false;
+        this.sucessoMessage = true
+        setTimeout(() => {
+          this.sucessoMessage = false
+        }, 4000);
 
       } catch (error) {
-        // this.isLoading = false;
-        // const message = error.request.response
-        // this.errorMessage = JSON.parse(message)
-        // this.erroIf1 = true
-        // setTimeout(() => {
-        //     this.erroIf1 = false
-        // }, 4000);
+        const message = error.request.response
+        this.errorMessage = JSON.parse(message)
+        this.erroIf = true
+        setTimeout(() => {
+          this.erroIf = false
+        }, 4000);
+
         console.log(error)
 
       }

@@ -23,7 +23,7 @@
             <th scope="row">{{ item.id }}</th>
             <td>{{ item.typeId }}</td>
             <td>{{ item.title }}</td>
-            <td>{{ item.updated_at }}</td>
+            <td>{{ dataFormatada(item.updated_at) }}</td>
             <td class="d-flex justify-content-center align gap-2">
               <button class="btn btn-danger" @click="dellGallery(item.id)">
                 Delete
@@ -51,6 +51,8 @@ import ModalGallery from "@/components/ModalGallery.vue";
 import ModalEditarGallery from "@/components/ModalEditarGallery.vue";
 import { mapActions, mapMutations } from "vuex";
 import store from "@/store";
+import { format } from 'date-fns';
+
 export default {
   components: { ModalGallery, ModalEditarGallery },
   data() {
@@ -62,15 +64,17 @@ export default {
         created_at: null,
         updated_at: null,
         typeId: null,
-
       },
-      ifGallery: false
+      ifGallery: false,
+
     }
   },
   computed: {
     store() {
       return store
     },
+
+
   },
   created() {
     this.getGallerys();
@@ -128,6 +132,18 @@ export default {
 
 
 
+    },
+    dataFormatada(upData) {
+      try {
+        const data = new Date(upData);
+        if (!isNaN(data.getTime())) {
+          return format(data, 'dd/MM/yyyy');
+        } else {
+          return 'Data inválida';
+        }
+      } catch (error) {
+        return 'Erro ao formatar a data';
+      }
     },
   },
 

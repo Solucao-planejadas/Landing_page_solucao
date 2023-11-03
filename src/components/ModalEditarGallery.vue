@@ -5,7 +5,9 @@
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Portfólio</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar album</h1>
+                    <CardErroMessage v-if="erroIf2" :errorMessageCard="errorMessage"></CardErroMessage>
+                    <CardErroMessage v-if="erroIf1" :errorMessageCard="errorMessage"></CardErroMessage>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -19,7 +21,7 @@
                                         style="background-color: var(--purple-primary);">
                                         <h5 class="h5 text-white">Seu Portfólio</h5>
                                     </div>
-                                    <CardErroMessage v-if="erroIf1" :errorMessageCard="errorMessage"></CardErroMessage>
+
 
 
                                     <div class="input-group p-3 ">
@@ -31,7 +33,10 @@
 
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 ms-3">
-                                            Sua Capa </div>
+                                            <h5>
+                                                Sua Capa
+                                            </h5>
+                                        </div>
                                     </div>
 
 
@@ -58,9 +63,9 @@
                                     </div>
 
 
-                                    <h6 class="ms-3 mt-4">
+                                    <h5 class="ms-3 mt-4">
                                         Tipo
-                                    </h6>
+                                    </h5>
 
                                     <div class=" m-3">
                                         <select class="form-select" name="type" id="" v-model="dadosModal.typeId" disabled>
@@ -69,9 +74,9 @@
                                         </select>
                                     </div>
 
-                                    <h6 class="ms-3 mt-4">
-                                        texto
-                                    </h6>
+                                    <h5 class="ms-3 mt-4">
+                                        Descrição do Produto
+                                    </h5>
 
                                     <div class="form-floating m-3">
                                         <textarea class="form-control mb-3" placeholder="Leave a comment here"
@@ -88,7 +93,7 @@
                                                 Salvar informações do Album
                                             </h5>
                                         </div>
-                                        <div class="d-flex justify-content-end">
+                                        <div class="d-flex justify-content-end mt-3">
 
                                             <button class="btn btn-success mb-3 " @click="UpAlbum()">
                                                 Salvar
@@ -96,22 +101,22 @@
                                         </div>
                                     </div>
 
-                                    <CardErroMessage v-if="erroIf2" :errorMessageCard="errorMessage"></CardErroMessage>
 
-                                    <h6 class="ms-3">
+
+                                    <h5 class="ms-3">
                                         Suas Imagens
-                                    </h6>
+                                    </h5>
 
 
 
-                                    <div>
-                                        <!-- {{ dadosModalFotos.gallerysItems }} -->
-                                        <div class=" card-group mt-3 g-4 d-flex flex-wrap"
+                                    <div class="">
+                                        <div class="d-flex flex-wrap  mt-3 g-4  "
                                             v-for="(photo) in store.getters.StateGalleryItems" :key="photo">
-                                            <!-- {{ photo[index] }} -->
-                                            <div class="card m-2 border" v-for="(item) in photo" :key="item.id">
+                                            <div class="card m-auto border mt-3" v-for="(item) in photo" :key="item.id"
+                                                style="width: 300px;">
                                                 <div class="border-bottom">
-                                                    <img :src="item.itemFileName" class="card-img-top" alt="">
+                                                    <img :src="item.itemFileName" class="card-img-top" alt=""
+                                                        style="height: 200px;">
                                                 </div>
                                                 <div class="card-body d-grid gap-2">
                                                     <button type="button" class="btn btn-danger"
@@ -143,13 +148,13 @@
                                     <div>
 
 
-                                        <h6>
+                                        <h5>
                                             Carregue Suas Imagem:
-                                        </h6>
+                                        </h5>
 
 
 
-                                        <div class="input-group">
+                                        <div class="input-group mt-3">
                                             <input type="file" class="form-control btn btn-outline-primary"
                                                 @change="adicionarFoto" aria-label="Upload" ref="fileInput" multiple>
                                             <button class="btn btn-outline-secondary btn-success text-white" type="submit"
@@ -165,9 +170,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                        @click="eeeeeeee()">Sair</button>
-                    <button type="button" class="btn btn-primary">Salvar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
+
                 </div>
             </div>
         </div>
@@ -178,7 +182,7 @@
 import store from "@/store";
 import { mapActions, mapGetters, mapMutations } from 'vuex'
 // import loading from "@/components/Loading.vue"
-// import CardErroMessage from "@/components/CardErroMessage.vue"
+import CardErroMessage from "@/components/CardErroMessage.vue"
 
 
 
@@ -233,7 +237,7 @@ export default {
     },
     components: {
         // loading,
-        // CardErroMessage,
+        CardErroMessage,
     },
     computed: {
         store() {
@@ -298,13 +302,13 @@ export default {
                 this.isLoading = false;
 
             } catch (error) {
-                // this.isLoading = false;
-                // const message = error.request.response
-                // this.errorMessage = JSON.parse(message)
-                // this.erroIf1 = true
-                // setTimeout(() => {
-                //     this.erroIf1 = false
-                // }, 4000);
+                this.isLoading = false;
+                const message = error.request.response
+                this.errorMessage = JSON.parse(message)
+                this.erroIf1 = true
+                setTimeout(() => {
+                    this.erroIf1 = false
+                }, 4000);
                 console.log(error)
 
             }
@@ -320,47 +324,57 @@ export default {
             this.isLoading = true;
             const foto = new FormData();
 
-
-            for (let index = 0; index < this.fotos.length; index++) {
-
-                foto.append("galleryItens[]", this.fotos[index]);
-            }
+            if (this.fotos.length != 0) {
 
 
-            const Payload = {
-                token: store.getters.StateToken.token,
-                photo: foto,
-                id: this.modalId
-            };
+                for (let index = 0; index < this.fotos.length; index++) {
 
-            try {
-
-                await this.UpGalleryItems(Payload)
-                // alert(`Album Cadastrado com sucesso`);
-                this.isLoading = false;
-                this.ifalbum = true;
-                console.log(this.isLoading, "loading")
-                const ttt = null
-                this.resetItems(ttt)
-
-                const payload = {
-                    token: store.getters.StateToken.token,
-                    id: this.modalId
+                    foto.append("galleryItens[]", this.fotos[index]);
                 }
-                await this.GetGalleryItems(payload)
-                this.ifalbum = true;
-                console.log(this.isLoading, "loading")
 
-            } catch (error) {
-                this.isLoading = false;
-                const message = error.request.response
-                this.errorMessage = JSON.parse(message)
+                const Payload = {
+                    token: store.getters.StateToken.token,
+                    photo: foto,
+                    id: this.modalId
+                };
+
+                try {
+
+                    await this.UpGalleryItems(Payload)
+                    // alert(`Album Cadastrado com sucesso`);
+                    this.isLoading = false;
+                    this.ifalbum = true;
+                    console.log(this.isLoading, "loading")
+                    const ttt = null
+                    this.resetItems(ttt)
+
+                    const payload = {
+                        token: store.getters.StateToken.token,
+                        id: this.modalId
+                    }
+                    await this.GetGalleryItems(payload)
+                    this.ifalbum = true;
+                    console.log(this.isLoading, "loading")
+
+                } catch (error) {
+                    this.isLoading = false;
+                    const message = error.request.response
+                    this.errorMessage = JSON.parse(message)
+                    this.erroIf2 = true
+                    setTimeout(() => {
+                        this.erroIf2 = false
+                    }, 4000);
+
+                }
+            } else {
+                this.errorMessage = ["Campo de Arquivo está Vazio!!"]
                 this.erroIf2 = true
                 setTimeout(() => {
                     this.erroIf2 = false
                 }, 4000);
-
             }
+
+
 
 
 
@@ -454,10 +468,7 @@ export default {
         },
 
 
-        eeeeeeee() {
-            // const ttt = null
-            // this.resetItems(ttt)
-        },
+
 
 
 
