@@ -47,6 +47,12 @@ export default {
 </script>
 
 <style scoped>
+
+img {
+  max-height: 10rem;
+  height: 100%;
+}
+
 .card:hover,
 img:hover {
     opacity: 0.6;

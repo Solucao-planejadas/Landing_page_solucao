@@ -104,7 +104,7 @@ export default {
       try {
         await this.CreateGallery(avatarPayload)
         await this.GetGallery()
-        this.$router.push("/Gallery");
+        this.$router.go("/Gallery");
         this.sucessoMessage = true
         setTimeout(() => {
           this.sucessoMessage = false
