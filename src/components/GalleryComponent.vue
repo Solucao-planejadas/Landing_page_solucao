@@ -21,7 +21,14 @@
         <tbody v-if="ifGallery">
           <tr v-for="(item, index) in items" :key="item[index]">
             <th scope="row">{{ item.id }}</th>
-            <td>{{ item.typeId }}</td>
+            <td>
+              <div v-if="item.typeId == 1">
+                Sobre Medida
+              </div>
+              <div v-if="item.typeId == 2">
+                Pronto Entrega
+              </div>
+            </td>
             <td>{{ item.title }}</td>
             <td>{{ dataFormatada(item.updated_at) }}</td>
             <td class="d-flex justify-content-center align gap-2">
@@ -37,11 +44,8 @@
           </tr>
         </tbody>
       </table>
-
     </div>
-
   </div>
-
   <ModalGallery />
 </template>
 
@@ -66,15 +70,12 @@ export default {
         typeId: null,
       },
       ifGallery: false,
-
     }
   },
   computed: {
     store() {
       return store
     },
-
-
   },
   created() {
     this.getGallerys();
@@ -83,23 +84,16 @@ export default {
     ...mapActions(["LogIn", "GetGallery", "GetGalleryItems", "DellGallery"]),
     ...mapMutations(["resetItems"]),
     async getGallerys() {
-
       if (store.getters.StateGallery != null || store.getters.StateGallery != undefined) {
         this.items = store.getters.StateGallery.gallerys
-        // console.log(store.getters.StateGallery)
-        console.log(this.items, "hhhhhhhhhhhhhhhhhhhhhhhh")
         this.ifGallery = true
       }
-
-
       await this.GetGallery();
     },
     async Editar(id) {
-
       try {
         const ttt = null
         this.resetItems(ttt)
-
         const payload = {
           token: store.getters.StateToken.token,
           id: id
@@ -108,15 +102,9 @@ export default {
       } catch (error) {
         console.log(error)
       }
-
-
-
-
     },
     async dellGallery(id) {
-
       try {
-
         const payload = {
           token: store.getters.StateToken.token,
           id: id
@@ -128,10 +116,6 @@ export default {
       } catch (error) {
         console.log(error)
       }
-
-
-
-
     },
     dataFormatada(upData) {
       try {

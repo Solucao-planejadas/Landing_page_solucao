@@ -24,12 +24,10 @@
               <option value="2">Pronto Entrega</option>
             </select>
           </div>
-
           <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="dados.Texto"></textarea>
           </div>
-
           <div class="mb-3">
             <label for="formFile" class="form-label">Foto de capa</label>
             <input class="form-control" type="file" id="formFile" @change="GetCapa">
@@ -39,7 +37,6 @@
             <label for="formFile" class="form-label">Fotos do produto</label>
             <input class="form-control" multiple type="file" id="formFile" @change="GetFotos">
           </div>
-
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Sair</button>
@@ -92,33 +89,19 @@ export default {
       this.dados.Fotos = event.target.files
     },
     async createGallery() {
-
-
-
       const album = new FormData();
-
-      // console.log(this.dados.Fotos)
-
       for (let index = 0; index < this.dados.Fotos.length; index++) {
         album.append("galleryItens[]", this.dados.Fotos[index]);
       }
-
       album.append("title", this.dados.Titulo);
       album.append("galleryCover", this.dados.Capa);
       album.append("photoType", this.dados.typeId);
       album.append("description", this.dados.Texto);
-      // album.append("portifolioPhotos[]", this.album.Fotos);
-
       const avatarPayload = {
         token: store.getters.StateToken.token,
         infos: album,
       };
-
-
       try {
-
-
-        // alert(`Album Cadastrado com sucesso`);
         await this.CreateGallery(avatarPayload)
         await this.GetGallery()
         this.$router.push("/Gallery");
@@ -134,15 +117,8 @@ export default {
         setTimeout(() => {
           this.erroIf = false
         }, 4000);
-
         console.log(error)
-
       }
-
-
-
-
-
     },
   },
 }
