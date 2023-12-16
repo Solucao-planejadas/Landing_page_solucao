@@ -8,7 +8,7 @@ import store from "@/store";
 import axios from "axios";
 
 axios.defaults.withCredentials = false;
-axios.defaults.baseURL = "http://localhost:3000/";
+axios.defaults.baseURL = process.env.VUE_APP_API_URL_SOLUCOES;
 
 createApp(App)
   .use(store)
