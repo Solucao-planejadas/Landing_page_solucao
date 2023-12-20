@@ -16,9 +16,9 @@
             Preencha todos os campos de forma válida!
         </div>
         <div class="d-flex gap-2 p-2 justify-center align-center"
-             :class="{ 'flex-column': $vuetify.display.sm || $vuetify.display.xs }">
+            :class="{ 'flex-column': $vuetify.display.sm || $vuetify.display.xs }">
 
-            <IconsForm :icon_call="icon_call" :icon_location="icon_location" :icon_sms="icon_sms"/>
+            <IconsForm :icon_call="icon_call" :icon_location="icon_location" :icon_sms="icon_sms" style="width: auto;" />
 
             <div v-if="!$vuetify.display.sm" class="col col-md-1 line bg-black h-100 mr-5"></div>
 
@@ -28,14 +28,9 @@
 
                     <div class="col-md-12 form-floating">
 
-                        <input
-                                type="text"
-                                class="form-control"
-                                id="inputNome"
-                                :class="{ 'is-valid': nomeValido, 'is-invalid': errorOnSubmit || nomeInvalido && nomeTocado }"
-                                v-model="nome"
-                                @input="nomeTocado = true"
-                        >
+                        <input type="text" class="form-control" id="inputNome"
+                            :class="{ 'is-valid': nomeValido, 'is-invalid': errorOnSubmit || nomeInvalido && nomeTocado }"
+                            v-model="nome" @input="nomeTocado = true">
                         <label for="inputNome">Nome</label>
 
                         <div class="invalid-feedback" v-if="errorOnSubmit || nomeTocado && nomeInvalido">
@@ -46,14 +41,9 @@
 
                     <div class="col-md-12 form-floating">
 
-                        <input
-                                type="email"
-                                class="form-control"
-                                id="inputEmail"
-                                :class="{ 'is-valid': emailValido, 'is-invalid': errorOnSubmit || emailInvalido && emailTocado }"
-                                v-model="email"
-                                @input="emailTocado = true"
-                        >
+                        <input type="email" class="form-control" id="inputEmail"
+                            :class="{ 'is-valid': emailValido, 'is-invalid': errorOnSubmit || emailInvalido && emailTocado }"
+                            v-model="email" @input="emailTocado = true">
                         <label for="inputNome">Email</label>
 
                         <div class="invalid-feedback" v-if="errorOnSubmit || emailTocado && emailInvalido">
@@ -62,14 +52,9 @@
                     </div>
 
                     <div class="col-md-12  mb-3  form-floating">
-                        <input type="tel"
-                               inputmode="tel"
-                               class="form-control"
-                               id="inputTelefone"
-                               v-mask="'(##) #####-####'"
-                               :class="{ 'is-valid': telefoneValido, 'is-invalid': errorOnSubmit || telefoneInvalido && telefoneTocado }"
-                               v-model="telefone" @input="(telefoneTocado = true)"
-                        >
+                        <input type="tel" inputmode="tel" class="form-control" id="inputTelefone" v-mask="'(##) #####-####'"
+                            :class="{ 'is-valid': telefoneValido, 'is-invalid': errorOnSubmit || telefoneInvalido && telefoneTocado }"
+                            v-model="telefone" @input="(telefoneTocado = true)">
 
                         <label for="inputTelefone" class="form-label">Telefone</label>
 
@@ -80,13 +65,9 @@
                     </div>
 
                     <div class="col-md-12  mb-3  form-floating">
-                        <textarea
-                                rows="5"
-                                class="form-control"
-                                id="descricao"
-                                :class="{ 'is-valid': descricaoValida, 'is-invalid': errorOnSubmit || !descricaoValida && descricaoTocado }"
-                                v-model="descricao" @input="(descricaoTocado = true)"
-                        ></textarea>
+                        <textarea rows="5" class="form-control" id="descricao"
+                            :class="{ 'is-valid': descricaoValida, 'is-invalid': errorOnSubmit || !descricaoValida && descricaoTocado }"
+                            v-model="descricao" @input="(descricaoTocado = true)"></textarea>
 
                         <label for="descricao" class="form-label">Descrição</label>
 
@@ -96,23 +77,17 @@
                     </div>
 
                     <div class="col-12 d-flex justify-center align-center">
-                        <v-btn
-                                :disabled="errorOnSubmit === false"
-                                :loading="errorOnSubmit === true"
-
-                                class="btn btn-primary text-none mb-4"
-                                :class="{'btn-danger': errorOnSubmit, 'btn-success': errorOnSubmit === false, 'btn-light': this.errorOnSubmit || this.errorOnSubmit === false}"
-                                color="indigo-darken-3"
-                                size="default"
-                                variant="flat"
-                                @click="submit()"
-                        >
+                        <v-btn :disabled="errorOnSubmit === false" :loading="errorOnSubmit === true"
+                            class="btn btn-primary text-none mb-4"
+                            :class="{ 'btn-danger': errorOnSubmit, 'btn-success': errorOnSubmit === false, 'btn-light': this.errorOnSubmit || this.errorOnSubmit === false }"
+                            color="indigo-darken-3" size="default" variant="flat" @click="submit()">
                             Enviar
                         </v-btn>
                     </div>
                 </div>
             </div>
         </div>
+
 
     </div>
 </template>
@@ -127,5 +102,4 @@
 .line {
     width: 1px;
 }
-
 </style>

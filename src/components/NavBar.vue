@@ -1,38 +1,18 @@
 <template>
-  <nav
-    class="navbar navbar-expand-lg fixed-top"
-    :class="{ notTransparent: notTransparent && !hasScrolled, scrolled: hasScrolled }"
-  >
+  <nav class="navbar navbar-expand-lg fixed-top"
+    :class="{ notTransparent: notTransparent && !hasScrolled, scrolled: hasScrolled }">
     <div class="container">
-      <a
-        class="navbar-brand"
-        href="#"
-        @click="
-          goToHome()
-        "
-      >
+      <a class="navbar-brand" href="#" @click="
+        goToHome()
+        ">
         <img :src="logo" alt="..." height="36" />
       </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div
-        class="collapse navbar-collapse justify-content-between flex-grow-0"
-        id="navbarSupportedContent"
-      >
-        <ul
-          class="navbar-nav ms-auto"
-          v-for="button in buttons"
-          v-bind:key="button.id"
-        >
+      <div class="collapse navbar-collapse justify-content-between flex-grow-0" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto" v-for="button in buttons" v-bind:key="button.id">
           <li class="nav-item">
             <button class="nav-link" @click="scrollTo(button.id)">
               {{ button.page }}

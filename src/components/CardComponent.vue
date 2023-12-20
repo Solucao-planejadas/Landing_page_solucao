@@ -1,13 +1,9 @@
 <template>
   <div class="products gap-3">
     <div class="row">
-      <div
-        class="col-sm-4 mb-3"
-        v-for="(card, index) in cards"
-        v-bind:key="card.title"
-      >
+      <div class="col-sm-4 mb-3" v-for="(card, index) in cards" v-bind:key="card.title">
         <div class="card">
-          <img :src="card.src" class="card-img-top" :alt="card.title" />
+          <img :src="card.src" class="card-img-top" :alt="card.title" style="height: 20rem;" />
           <div class="card-body">
 
             <h5 class="card-title">{{ card.title }}</h5>
@@ -19,14 +15,8 @@
               </button>
 
               <div v-if="showCollapse">
-                <button
-                  class="btn btn-primary btn-sm"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  :data-bs-target="'#collapse' + index"
-                  aria-expanded="false"
-                  :aria-controls="'#collapse' + index"
-                >
+                <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="collapse"
+                  :data-bs-target="'#collapse' + index" aria-expanded="false" :aria-controls="'#collapse' + index">
                   Leia Mais
                 </button>
               </div>

@@ -2,75 +2,36 @@
   <div class="container mb-10" id="redesSociais">
     <div class="row justify-content-md-center form-container mt-3">
       <div class="d-flex justify-center align-center mt-10">
-        <h1
-          class="text-center bg-blue-accent-1 mb-5 p-1 w-75 rounded-1 text-white"
-        >
+        <h1 class="text-center bg-blue-accent-1 mb-5 p-1 w-75 rounded-1 text-white">
           Medias Sociais
         </h1>
       </div>
       <div class="d-flex justify-content-evenly">
         <div class="d-block text-center">
-          <img
-            class="p-3"
-            src="@/assets/img/whatsapp.svg"
-            alt="Imagem do WhatsApp"
-          />
-          <a
-            class="d-block p-2 rounded-4 px-3 bg-info"
-            alt="Link do WhatsApp"
-            href=""
-            target="_blank"
-            style="text-decoration: none"
-            >WhatsApp</a
-          >
+          <img class="p-3" src="@/assets/img/whatsapp.svg" alt="Imagem do WhatsApp" />
+          <a class="d-block p-2 rounded-4 px-3 bg-info" alt="Link do WhatsApp"
+            href="https://api.whatsapp.com/message/A4EPT34G2MEZF1?autoload=1&app_absent=0" target="_blank"
+            style="text-decoration: none">WhatsApp</a>
         </div>
 
         <div class="d-block text-center">
-          <img
-            class="p-3"
-            src="@/assets/img/instagram.svg"
-            alt="Imagem do Instagram"
-          />
-          <a
-            class="d-block p-2 rounded-4 px-3 bg-info"
-            alt="Link do Instagem"
-            href="https://www.instagram.com/solucoes_planejadas/"
-            target="_blank"
-            style="text-decoration: none"
-            >Instagram</a
-          >
+          <img class="p-3" src="@/assets/img/instagram.svg" alt="Imagem do Instagram" />
+          <a class="d-block p-2 rounded-4 px-3 bg-info" alt="Link do Instagem"
+            href="https://www.instagram.com/solucoes_planejadas/" target="_blank"
+            style="text-decoration: none">Instagram</a>
         </div>
 
         <div class="d-block text-center">
-          <img
-            class="p-3"
-            src="@/assets/img/facebook.svg"
-            alt="Imagem do Facebook"
-          />
-          <a
-            class="d-block p-2 rounded-4 px-3 bg-info"
-            alt="Link do Facebook"
-            href="https://www.facebook.com/solucoesplanejadas.com.br"
-            target="_blank"
-            style="text-decoration: none"
-            >Facebook</a
-          >
+          <img class="p-3" src="@/assets/img/facebook.svg" alt="Imagem do Facebook" />
+          <a class="d-block p-2 rounded-4 px-3 bg-info" alt="Link do Facebook"
+            href="https://www.facebook.com/solucoesplanejadas.com.br" target="_blank"
+            style="text-decoration: none">Facebook</a>
         </div>
 
         <div class="d-block text-center">
-          <img
-            class="p-3"
-            src="@/assets/img/o-email.svg"
-            alt="Imagem do E-mail"
-          />
-          <a
-            class="d-block p-2 rounded-4 px-3 bg-info"
-            alt="Link do E-mail"
-            href=""
-            target="_blank"
-            style="text-decoration: none"
-            >E-mail</a
-          >
+          <img class="p-3" src="@/assets/img/o-email.svg" alt="Imagem do E-mail" />
+          <a class="d-block p-2 rounded-4 px-3 bg-info" alt="Link do E-mail" href="mailto:Solucoesplanejadas@gmail.com"
+            target="_blank" style="text-decoration: none">E-mail</a>
         </div>
       </div>
     </div>
