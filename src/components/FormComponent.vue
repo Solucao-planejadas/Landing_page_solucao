@@ -4,11 +4,11 @@
             <h1 class="text-center bg-blue-accent-1 w-50 mb-5 p-1 rounded-1 text-white">Contate-nos</h1>
         </div>
 
-        <div v-if="codeResponse === 200" class="alert alert-success text-center" role="alert">
+        <div v-if="codeResponse === 200" class="alert alert-success text-center fixed-top w-100 p-2 m-2" role="alert">
             Obrigado, logo entraremos em contato!
         </div>
 
-        <div v-if="erroApi && messageApi.length !== 0" class="alert alert-danger text-center" role="alert">
+        <div v-if="erroApi && messageApi.length !== 0" class="alert alert-danger text-center fixed-top w-100 p-2 m-2" role="alert">
             {{ messageApi }}
         </div>
 
@@ -82,6 +82,9 @@
                             :class="{ 'btn-danger': errorOnSubmit, 'btn-success': errorOnSubmit === false, 'btn-light': this.errorOnSubmit || this.errorOnSubmit === false }"
                             color="indigo-darken-3" size="default" variant="flat" @click="submit()">
                             Enviar
+                          <div v-if="errorOnSubmit === false" class="ml-2 spinner-border text-light" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                          </div>
                         </v-btn>
                     </div>
                 </div>
