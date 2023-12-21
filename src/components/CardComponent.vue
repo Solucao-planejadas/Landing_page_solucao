@@ -6,13 +6,13 @@
           <img :src="card.src" class="card-img-top img-fluid object-fit-contain" :alt="card.title" style="height: 20rem;" />
           <div class="card-body">
 
-            <div class="h-50">
+            <div>
               <h5 class="card-title">{{ card.title }}</h5>
               <p class="d-none">{{ index }}</p>
             </div>
 
 
-            <div class="h-50 d-flex justify-content-between align-center gap-2">
+            <div class="d-flex justify-content-between align-center gap-2">
               <button class="btn btn-sm" @click="$router.push('/produtos')">
                 Ver coleção
               </button>
