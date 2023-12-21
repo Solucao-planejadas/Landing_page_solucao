@@ -44,7 +44,7 @@
                         <input type="email" class="form-control" id="inputEmail"
                             :class="{ 'is-valid': emailValido, 'is-invalid': errorOnSubmit || emailInvalido && emailTocado }"
                             v-model="email" @input="emailTocado = true">
-                        <label for="inputNome">Email</label>
+                        <label for="inputEmail">Email</label>
 
                         <div class="invalid-feedback" v-if="errorOnSubmit || emailTocado && emailInvalido">
                             Por favor, digite um endereço de email válido.
