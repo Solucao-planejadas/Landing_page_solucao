@@ -25,11 +25,9 @@
                         <p class="h4">Redes Sociais</p>
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item"
-                                v-for="button in buttons"
-                                v-bind:key="button.id">
-                                <button class="nav-link" @click="scrollTo(button.id)">
-                                    {{ button.page }}
-                                </button>
+                                v-for="midia in midias"
+                                v-bind:key="midia.id">
+                                <a class="nav-link" :href="midia.href">{{ midia.page }}</a>
                             </li>
                         </ul>
                     </ul>
@@ -40,11 +38,11 @@
                         <p class="h4">Contatos</p>
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item"
-                                v-for="button in buttons"
-                                v-bind:key="button.id">
-                                <button class="nav-link" @click="scrollTo(button.id)">
-                                    {{ button.page }}
-                                </button>
+                                v-for="contato in contatos"
+                                v-bind:key="contato.id">
+                                <a :href="contato.id === 'telefone' ? 'javascript:;' : contato.href"  class="nav-link">
+                                    {{ contato.page }}
+                                </a>
                             </li>
                         </ul>
                     </ul>
@@ -72,35 +70,35 @@ export default {
     },
     props: {
         buttons: Array,
+        midias: Array,
+        contatos: Array,
     },
 
-    scrollTo(id) {
+    methods: {
+      scrollTo(id) {
         try {
-            document.getElementById(id).scrollIntoView({
+          document.getElementById(id).scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+            inline: "center",
+          });
+        } catch (err) {
+          this.currentPage = window.location.pathname;
+
+          if (this.currentPage === "/produtos") {
+            router.push(`/#${id}`);
+          } else if (this.currentPage === "/") {
+            router.push(`/produtos`);
+            setTimeout(() => {
+              document.getElementById(id).scrollIntoView({
                 behavior: "smooth",
                 block: "center",
                 inline: "center",
-            });
-        } catch (err) {
-            this.currentPage = window.location.pathname;
-
-            if (this.currentPage === "/produtos") {
-                router.push(`/#${id}`);
-            } else if (this.currentPage === "/") {
-                router.push(`/produtos`);
-                setTimeout(() => {
-                    document.getElementById(id).scrollIntoView({
-                        behavior: "smooth",
-                        block: "center",
-                        inline: "center",
-                    });
-                }, 100);
-            }
+              });
+            }, 100);
+          }
         }
-    },
+      },
+    }
 };
 </script>
-
-<style>
-@import "@/assets/css/main.css";
-</style>

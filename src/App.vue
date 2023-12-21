@@ -17,6 +17,8 @@
   <RodapeComponent
           v-if="validatePathLandingPage()"
           :buttons="buttons"
+          :midias="midias"
+          :contatos="contato"
   />
 </template>
 
@@ -56,11 +58,41 @@ export default {
         {
           page: "Produtos",
           id: "produtos",
-        },
-        {
-          page: "Login",
-          id: "login",
         }
+      ],
+      midias: [
+        {
+          page: "WhatsApp",
+          id: "Whats",
+          href: 'https://api.whatsapp.com/message/A4EPT34G2MEZF1?autoload=1&app_absent=0'
+        },{
+          page: "Instagram",
+          id: "Instagram",
+          href: 'https://www.instagram.com/solucoes_planejadas/'
+        },{
+          page: "Facebook",
+          id: "face",
+          href: 'https://www.facebook.com/solucoesplanejadas.com.br'
+        },{
+          page: "E-mail",
+          id: "email",
+          href: 'mailto:Solucoesplanejadas@gmail.com'
+        },
+      ],
+      contato: [
+        {
+          page: "WhatsApp",
+          id: "Whats",
+          href: 'https://api.whatsapp.com/message/A4EPT34G2MEZF1?autoload=1&app_absent=0'
+        },{
+          page: "E-mail",
+          id: "email",
+          href: 'mailto:Solucoesplanejadas@gmail.com'
+        },{
+          page: "(11) 2667-6049",
+          id: "telefone",
+          href: '(11) 2667-6049'
+        },
       ],
       adminButtons: [
         {
