@@ -4,8 +4,13 @@
             >
             <div class="text-center mb-2">
                 <img :src="icon_location" class="w-50 mb-2" alt="" style="max-width: 50px;" />
-                <p class="color_text_form rounded-4 p-1 px-3">R. Alexandre Fernandes, 247 - Vila dona Sinha, São Paulo - SP,
-                    03924-000</p>
+
+              <div class="rounded-4 color_text_form p-1 px-3">
+                <p class="">R. Alexandre Fernandes, 247</p>
+                <p class="">Vila dona Sinha, São Paulo - SP,
+                  03924-000</p>
+              </div>
+
             </div>
             <div class="text-center mb-2">
                 <img :src="icon_call" class="w-50 mb-2" alt="" style="max-width: 50px;" />
