@@ -62,7 +62,7 @@ export default {
           text: "Porta de Giro de acabamento Reto Prateleira deslizante p/ Teclado USB Divisões Internas Acompanha Fechadura e Chaves Dobradiças - Puxador Haste Fixo na parede. MDF Branco TX 15/18mm A: 640 mm x L: 600 mm x P: 400 mm",
         },
         {
-          title: "Ateliê P/ Material Pedagógico Coletivo",
+          title: "Ateliê Material Pedagógico Coletivo",
           src: "https://lh3.googleusercontent.com/pw/ABLVV84ZFXbcyAQKIQ3iMM-K_zCE4DCPS7wdKuR3m1C2Vrx28qeAor0yd2DPGPgXl79k1gx3AGkywkuUcXbJa969H80V_b1yIePq0WHWOVbPnXxq3x7djg3ebCopXAo-M49a5S8Wkck8FxUP9PhDwSKkfN28sQ=w500-h500-s-no-gm?authuser=0",
           text: "Prateleiras e Divisórias Internas 5 Nichos no tampo superior Rodízios reforçados MDF Branco TX 18 mm L: 800 mm A: 700 mm P: 550 mm ",
         },

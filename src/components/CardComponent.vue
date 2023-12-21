@@ -2,14 +2,17 @@
   <div class="products gap-3">
     <div class="row">
       <div class="col-sm-4 mb-3" v-for="(card, index) in cards" v-bind:key="card.title">
-        <div class="card">
-          <img :src="card.src" class="card-img-top" :alt="card.title" style="height: 20rem;" />
+        <div class="card h-100 w-100">
+          <img :src="card.src" class="card-img-top img-fluid object-fit-contain" :alt="card.title" style="height: 20rem;" />
           <div class="card-body">
 
-            <h5 class="card-title">{{ card.title }}</h5>
-            <p class="d-none">{{ index }}</p>
+            <div class="h-50">
+              <h5 class="card-title">{{ card.title }}</h5>
+              <p class="d-none">{{ index }}</p>
+            </div>
 
-            <div class="d-flex justify-content-between align-center gap-2">
+
+            <div class="h-50 d-flex justify-content-between align-center gap-2">
               <button class="btn btn-sm" @click="$router.push('/produtos')">
                 Ver coleção
               </button>
