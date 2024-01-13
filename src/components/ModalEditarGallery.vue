@@ -59,7 +59,6 @@
 <!--                                    </div>-->
 
                                   <div class="mb-3">
-                                    <label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
                                     <ckeditor :editor="editor" v-model="dadosModal.description" :config="editorConfig"></ckeditor>
                                   </div>
 
