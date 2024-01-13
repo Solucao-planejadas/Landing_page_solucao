@@ -7,7 +7,7 @@
                     <hr class="divider" />
                 </div>
                 <div class="col-lg-8 align-self-baseline">
-                    <p class="text-white-75 mb-5 description mt-2">Estamos à disposição para atender ao seu pedido. Conte
+                    <p class="text-white-75 mb-5 description mt-2">Conte
                         conosco
                         para proporcionar um serviço de qualidade e eficiência, buscando sempre superar suas expectativas.
                         Estamos prontos para atendê-lo com dedicação e profissionalismo. Se precisar de alguma assistência
@@ -28,7 +28,8 @@ export default {
 .masthead {
     padding-top: 10rem;
     padding-bottom: calc(10rem - 4.5rem);
-    background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("@/assets/img/imgCapa/img-capa2.jpg") no-repeat scroll center;
+    background: linear-gradient(to bottom, rgba(80, 167, 238, 0.685) 0%,
+            rgba(21, 236, 218, 0) 100%), url("@/assets/img/imgCapa/img-capa2.jpg") no-repeat scroll center;
     background-size: cover;
 }
 

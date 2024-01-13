@@ -1,32 +1,18 @@
 <template>
-  <NavBar
-    v-if="validatePathLandingPage()"
-    :buttons="buttons"
-    :logo="logo"
-  />
+  <NavBar v-if="validatePathLandingPage()" :buttons="buttons" :logo="logo" />
 
-  <NavBar
-    v-if="validatePathAdminPage()"
-    :buttons="adminButtons"
-    :logo="logo"
-    :not-transparent="true"
-  />
+  <NavBar v-if="validatePathAdminPage()" :buttons="adminButtons" :logo="logo" :not-transparent="true" />
 
   <router-view />
 
-  <RodapeComponent
-          v-if="validatePathLandingPage()"
-          :buttons="buttons"
-          :midias="midias"
-          :contatos="contato"
-  />
+  <RodapeComponent v-if="validatePathLandingPage()" :buttons="buttons" :midias="midias" :contatos="contato" />
 </template>
 
 <script>
 import logo from "@/assets/logo.png";
 import NavBar from "@/components/NavBar.vue";
 import RodapeComponent from "@/components/RodapeComponent.vue";
-import {router} from "@/router";
+import { router } from "@/router";
 
 export default {
   name: "App",
@@ -65,15 +51,15 @@ export default {
           page: "WhatsApp",
           id: "Whats",
           href: 'https://api.whatsapp.com/message/A4EPT34G2MEZF1?autoload=1&app_absent=0'
-        },{
+        }, {
           page: "Instagram",
           id: "Instagram",
           href: 'https://www.instagram.com/solucoes_planejadas/'
-        },{
+        }, {
           page: "Facebook",
           id: "face",
           href: 'https://www.facebook.com/solucoesplanejadas.com.br'
-        },{
+        }, {
           page: "E-mail",
           id: "email",
           href: 'mailto:Solucoesplanejadas@gmail.com'
@@ -84,14 +70,19 @@ export default {
           page: "WhatsApp",
           id: "Whats",
           href: 'https://api.whatsapp.com/message/A4EPT34G2MEZF1?autoload=1&app_absent=0'
-        },{
+        }, {
           page: "E-mail",
           id: "email",
           href: 'mailto:Solucoesplanejadas@gmail.com'
-        },{
+        }, {
           page: "(11) 2667-6049",
-          id: "telefone",
+          id: "Fixo",
           href: '(11) 2667-6049'
+        },
+        {
+          page: "(11) 96571-3881",
+          id: "telefone",
+          href: '(11) 96571-3881'
         },
       ],
       adminButtons: [
@@ -120,7 +111,7 @@ export default {
     })
   },
   watch: {
-    '$route' () {
+    '$route'() {
       this.validatePathLandingPage()
       this.validatePathAdminPage()
     }

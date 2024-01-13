@@ -11,19 +11,9 @@
                             mercado.</p>
 
                     </div>
-                    <div class="d-flex justify-content-end mt-2">
-                        <div>
-                            <p class="mb-0">Responsável pela Soluções planejadas
-                            </p>
-                            <div class="d-flex justify-content-end">
-                                <p>
-                                    <strong>- Fernando Firmino Fraga.</strong>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="mt-3 text-center">
-                        <p class="fs-5">
+                        <p class="fs-5 ">
                             A Soluções Planejadas é também especializada no design e produção de móveis escolares. Nós
                             sabemos que vocês acompanham as tendências da evolução do sistema educacional e perspectivas
                             pedagógicas!
@@ -46,6 +36,18 @@
                             Utilizamos material MDF para confecção de seus produtos, com ferragens, suportes e rodízios de
                             qualidade e resistência, compreendendo a necessidade do seu uso diário.
                         </p>
+
+                    </div>
+                    <div class="d-flex justify-content-end mt-2">
+                        <div>
+                            <p class="mb-0">Responsável pela Soluções planejadas
+                            </p>
+                            <div class="d-flex justify-content-end">
+                                <p>
+                                    <strong>- Fernando Firmino Fraga.</strong>
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -9,9 +9,8 @@
       <div class="d-flex justify-content-evenly">
         <div class="d-block text-center">
           <img class="p-3" src="@/assets/img/whatsapp.svg" alt="Imagem do WhatsApp" />
-          <a class="d-block p-2 rounded-4 px-3 bg-info" alt="Link do WhatsApp"
-            href="https://api.whatsapp.com/message/A4EPT34G2MEZF1?autoload=1&app_absent=0" target="_blank"
-            style="text-decoration: none">WhatsApp</a>
+          <a class="d-block p-2 rounded-4 px-3 bg-info" alt="Link do WhatsApp" href="https://wa.link/3k37f4"
+            target="_blank" style="text-decoration: none">WhatsApp</a>
         </div>
 
         <div class="d-block text-center">

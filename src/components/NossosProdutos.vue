@@ -27,8 +27,8 @@ export default {
   padding-top: 10rem;
   padding-bottom: calc(10rem - 4.5rem);
   background: linear-gradient(to bottom,
-      rgba(92, 77, 66, 0.8) 0%,
-      rgba(92, 77, 66, 0.8) 100%),
+      rgba(80, 167, 238, 0.685) 0%,
+      rgba(21, 236, 218, 0) 100%),
     url("@/assets/img/imgCapa/img-capa5.jpg") no-repeat scroll center;
   background-size: cover;
 }
