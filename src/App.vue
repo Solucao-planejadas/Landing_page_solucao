@@ -76,7 +76,7 @@ export default {
           href: 'mailto:Solucoesplanejadas@gmail.com'
         }, {
           page: "(11) 2667-6049",
-          id: "Fixo",
+          id: "telefone",
           href: '(11) 2667-6049'
         },
         {
