@@ -1,6 +1,6 @@
 <template>
   <div class="modal fade" :id="'productCard' + modalId" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-       aria-labelledby="productCardLabel" aria-hidden="true">
+    aria-labelledby="productCardLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
@@ -9,17 +9,9 @@
         </div>
         <div class="modal-body">
 
-          <div class="row row-cols-1 row-cols-md-12 g-4">
 
-            <div>
-              <p class="font-weight-bold">Descrição: </p>
-              <p class="mt-3 mb-3">
-                {{description}}
-              </p>
-            </div>
-          </div>
 
-          <hr class="mt-4 mb-4">
+
           <div>
             <p class="font-weight-bold mb-3">Fotos: </p>
             <div class="row row-cols-1 row-cols-md-2 g-4">
@@ -31,7 +23,16 @@
 
             </div>
           </div>
+          <hr class="mt-4 mb-4">
+          <div class="row row-cols-1 row-cols-md-12 g-4">
 
+            <div>
+              <p class="font-weight-bold">Descrição: </p>
+              <p class="mt-3 mb-3">
+                {{ description }}
+              </p>
+            </div>
+          </div>
 
         </div>
         <div class="modal-footer">
@@ -58,13 +59,13 @@ export default {
   methods: {
     getImages() {
       axios.get(`/gallery/${this.modalId}`)
-          .then(response => {
-            this.images = response.data.gallery
-          })
-          .catch(err => {
-            console.log(err)
-            return [];
-          })
+        .then(response => {
+          this.images = response.data.gallery
+        })
+        .catch(err => {
+          console.log(err)
+          return [];
+        })
     }
   },
   props: {
@@ -84,6 +85,4 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
