@@ -28,7 +28,7 @@ export default {
 .masthead {
     padding-top: 10rem;
     padding-bottom: calc(10rem - 4.5rem);
-    background: linear-gradient(to bottom, rgba(80, 167, 238, 0.685) 0%,
+    background: linear-gradient(to bottom, rgba(0, 140, 255, 0.685) 0%,
             rgba(21, 236, 218, 0) 100%), url("@/assets/img/imgCapa/img-capa2.jpg") no-repeat scroll center;
     background-size: cover;
 }
