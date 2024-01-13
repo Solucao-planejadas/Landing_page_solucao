@@ -8,7 +8,7 @@ import store from "@/store";
 import axios from "axios";
 
 axios.defaults.withCredentials = false;
-axios.defaults.baseURL = process.env.VUE_APP_API_URL_SOLUCOES;
+axios.defaults.baseURL = "https://api-solucoes-solucao-planejada.vercel.app";
 
 createApp(App)
   .use(store)

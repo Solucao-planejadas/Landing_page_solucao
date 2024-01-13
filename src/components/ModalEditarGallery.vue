@@ -17,7 +17,7 @@
                                     <div class="input-group p-3 ">
                                         <span class="input-group-text " id="inputGroup-sizing-default">Titulo</span>
                                         <input type="text" class="form-control" aria-label="Sizing example input"
-                                            aria-describedby="inputGroup-sizing-default" :value="dadosModal.title">
+                                            aria-describedby="inputGroup-sizing-default" v-model="dadosModal.title">
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 ms-3">
