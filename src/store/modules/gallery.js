@@ -15,6 +15,11 @@ const actions = {
     await commit("setGallery", { gallerys: await request.data.gallery });
   },
 
+  async GetGalleryById({ commit }, id) {
+    const request = await axios.get(`/galleryById/${id}`);
+    await commit("setGallery", { gallerys: await request.data.gallery });
+  },
+
   async GetGalleryItems({ commit }, { id, token }) {
     const request = await axios.get(`/gallery/${id}`, {
       headers: {

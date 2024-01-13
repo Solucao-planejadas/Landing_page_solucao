@@ -26,7 +26,7 @@
           </div>
           <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="dados.Texto"></textarea>
+            <ckeditor :editor="editor" v-model="dados.Texto" :config="editorConfig"></ckeditor>
           </div>
           <div class="mb-3">
             <label for="formFile" class="form-label">Foto de capa</label>
@@ -52,6 +52,7 @@
 import store from "@/store";
 import { mapActions, mapGetters, mapMutations } from 'vuex'
 import CardErroMessage from "@/components/CardErroMessage.vue"
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 export default {
   name: 'ModalGallery',
   components: {
@@ -59,6 +60,40 @@ export default {
   },
   data() {
     return {
+      editor: ClassicEditor,
+      editorData: '<p>Descrição<p>',
+      editorConfig: {
+        toolbar: [
+          'undo',
+          'redo',
+          '|',
+          'heading'
+          ,
+          'fontFamily',
+          'fontSize',
+          'fontColor',
+          'fontBackgroundColor',
+          '|',
+          'bold',
+          'italic',
+          'underline',
+          'strikethrough',
+          '|',
+          'alignment',
+          '|',
+          'bulletedList',
+          'numberedList',
+          '|',
+          'outdent',
+          'indent',
+          '|',
+          'removeFormat',
+          '|',
+          'blockQuote',
+          'insertTable',
+          'horizontalLine',
+        ],
+      },
       dados: {
         Titulo: null,
         typeId: null,

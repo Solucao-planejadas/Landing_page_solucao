@@ -51,12 +51,18 @@
                                     <h5 class="ms-3 mt-4">
                                         Descrição do Produto
                                     </h5>
-                                    <div class="form-floating m-3">
-                                        <textarea class="form-control mb-3" placeholder="Leave a comment here"
-                                            id="floatingTextarea2" style="height: 100px"
-                                            v-model="dadosModal.description"></textarea>
-                                        <label for="floatingTextarea2">Comments</label>
-                                    </div>
+<!--                                    <div class="form-floating m-3">-->
+<!--                                        <textarea class="form-control mb-3" placeholder="Leave a comment here"-->
+<!--                                            id="floatingTextarea2" style="height: 100px"-->
+<!--                                            v-model="dadosModal.description"></textarea>-->
+<!--                                        <label for="floatingTextarea2">Comments</label>-->
+<!--                                    </div>-->
+
+                                  <div class="mb-3">
+                                    <label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
+                                    <ckeditor :editor="editor" v-model="dadosModal.description" :config="editorConfig"></ckeditor>
+                                  </div>
+
                                     <div class="m-3 mb-3 ">
                                         <div class="d-flex justify-content-end">
                                             <h5>
@@ -123,6 +129,7 @@
 import store from "@/store";
 import { mapActions, mapGetters, mapMutations } from 'vuex'
 import CardErroMessage from "@/components/CardErroMessage.vue"
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 export default {
     name: "ModalEditarGallery",
     props: {
@@ -137,6 +144,40 @@ export default {
     },
     data() {
         return {
+            editor: ClassicEditor,
+            editorData: '<p>descricao<p>',
+            editorConfig: {
+              toolbar: [
+                'undo',
+                'redo',
+                '|',
+                'heading'
+                ,
+                'fontFamily',
+                'fontSize',
+                'fontColor',
+                'fontBackgroundColor',
+                '|',
+                'bold',
+                'italic',
+                'underline',
+                'strikethrough',
+                '|',
+                'alignment',
+                '|',
+                'bulletedList',
+                'numberedList',
+                '|',
+                'outdent',
+                'indent',
+                '|',
+                'removeFormat',
+                '|',
+                'blockQuote',
+                'insertTable',
+                'horizontalLine',
+              ],
+            },
             errorMessage: null,
             erroIf1: false,
             erroIf2: false,
@@ -181,7 +222,7 @@ export default {
     },
     methods: {
         validateOnBack: Boolean,
-        ...mapActions(["GetGallery", "GetGalleryItems", "DellGalleryItems", "UpGalleryItems", "UpGallery", "GetGallery"]),
+        ...mapActions(["GetGallery", "GetGalleryItems", "DellGalleryItems", "UpGalleryItems", "UpGallery", "GetGallery", "GetGalleryById"]),
         ...mapGetters(["StateToken"]),
         ...mapMutations(["resetItems"]),
         adicionarCapa(event) {
@@ -201,8 +242,9 @@ export default {
             };
             try {
                 await this.UpGallery(avatarPayload)
-                await this.GetGallery()
-                this.dadosModal = store.getters.StateGallery.gallerys[0]
+                await this.GetGalleryById(this.modalId)
+              console.log(store.getters.StateGallery.gallerys)
+                this.dadosModal = store.getters.StateGallery.gallerys
                 this.isLoading = false;
             } catch (error) {
                 this.isLoading = false;
