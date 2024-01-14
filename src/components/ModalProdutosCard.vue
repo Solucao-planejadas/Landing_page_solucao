@@ -28,9 +28,9 @@
 
             <div>
               <p class="font-weight-bold">Descrição: </p>
-              <p class="mt-3 mb-3">
-                {{ description }}
-              </p>
+              <div class="mt-3 mb-3" v-html="description">
+
+              </div>
             </div>
           </div>
 
