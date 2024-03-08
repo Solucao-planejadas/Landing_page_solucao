@@ -1,8 +1,11 @@
 <template>
-  <div>
-    <h1 class="text-red">Not Found</h1>
-    <router-link to="/">Home</router-link>
-  </div>
+    <div>
+        <center>
+            <h1>404 not found</h1>
+            <h2>it seems you're in the wrong page</h2>
+            <router-link to="/">Home</router-link>
+        </center>
+    </div>
 </template>
 
 <script>
