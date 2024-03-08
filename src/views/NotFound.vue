@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <h1 class="text-red">Not Found</h1>
-  </div>
+    <div>
+        <center>
+            <h1>404 not found</h1>
+        </center>
+    </div>
 </template>
 
 <script>
